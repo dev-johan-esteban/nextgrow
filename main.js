@@ -112,7 +112,7 @@ function closeModal() {
 }
 
 // Número de WhatsApp receptor de la agencia
-const AGENCY_WHATSAPP_NUMBER = "573000000000";
+const AGENCY_WHATSAPP_NUMBER = "573135224026";
 
 function submitLead(e) {
     e.preventDefault();
