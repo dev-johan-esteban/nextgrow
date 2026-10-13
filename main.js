@@ -49,7 +49,8 @@ function switchView(view) {
         'blog': document.getElementById('view-blog'),
         'desarrollo-web': document.getElementById('view-desarrollo-web'),
         'automatizaciones': document.getElementById('view-automatizaciones'),
-        'software': document.getElementById('view-software')
+        'software': document.getElementById('view-software'),
+        'publicidad-digital': document.getElementById('view-publicidad-digital')
     };
 
     const btnInicio = document.getElementById('nav-btn-inicio');
@@ -67,13 +68,13 @@ function switchView(view) {
 
     // Clases del menú
     const inactiveClass = "px-5 py-2 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all duration-300";
-    const activeClass = "px-5 py-2 rounded-full transition-all duration-300 bg-electric-600 text-white shadow-md shadow-electric-600/30";
+    const activeClass = "px-5 py-2 rounded-full transition-all duration-300 bg-brand-purple text-white shadow-md shadow-purple-950/30";
 
     if (btnInicio) btnInicio.className = inactiveClass;
     if (btnServicios) btnServicios.className = inactiveClass;
     if (btnBlog) btnBlog.className = inactiveClass;
 
-    if (view === 'servicios' || view === 'desarrollo-web' || view === 'automatizaciones' || view === 'software') {
+    if (view === 'servicios' || view === 'desarrollo-web' || view === 'automatizaciones' || view === 'software' || view === 'publicidad-digital') {
         if (btnServicios) btnServicios.className = activeClass;
     } else if (view === 'blog') {
         if (btnBlog) btnBlog.className = activeClass;
@@ -334,21 +335,21 @@ function updateHomeSim() {
     const spend = parseInt(spendInput.value, 10);
     document.getElementById('home-sim-spend-label').textContent = `$${spend.toLocaleString()} USD`;
 
-    // Estado de los Checkboxes
-    const cbTraffic = document.getElementById('cb-traffic')?.checked || false;
+    // Estado de los nuevos Checkboxes
     const cbCurious = document.getElementById('cb-curious')?.checked || false;
+    const cbTraffic = document.getElementById('cb-traffic')?.checked || false;
     const cbSlowWeb = document.getElementById('cb-slowweb')?.checked || false;
-    const cbRoas = document.getElementById('cb-roas')?.checked || false;
+    const cbManual = document.getElementById('cb-manual')?.checked || false;
 
-    // Contar cuántas fugas se seleccionaron
-    const selectedLeaks = [cbTraffic, cbCurious, cbSlowWeb, cbRoas].filter(Boolean).length;
+    // Contar cuántos problemas se marcaron
+    const selectedLeaks = [cbCurious, cbTraffic, cbSlowWeb, cbManual].filter(Boolean).length;
 
-    // Cálculo dinámico de volumen
-    const estLeads = Math.round(spend / 7.5);
-    const junkFiltered = Math.round(estLeads * 0.82);
-    const hoursSaved = Math.round((junkFiltered * 6) / 60);
+    // Estimación dinámica según inversión (comenzando desde $100 USD)
+    const estLeads = Math.max(15, Math.round(spend / 6.5));
+    const junkFiltered = Math.round(estLeads * 0.78);
+    const hoursSaved = Math.max(6, Math.round((junkFiltered * 5) / 60));
 
-    // Actualizar métricas
+    // Elementos visuales
     const junkEl = document.getElementById('home-sim-junk-filtered');
     const hoursEl = document.getElementById('home-sim-hours-saved');
     const leakCountEl = document.getElementById('home-sim-leak-count');
@@ -358,33 +359,36 @@ function updateHomeSim() {
 
     if (junkEl) junkEl.textContent = `${junkFiltered} chats/mes`;
     if (hoursEl) hoursEl.textContent = `~${hoursSaved} hrs/mes libres`;
-    if (leakCountEl) leakCountEl.textContent = `${selectedLeaks} fugas detectadas`;
+    if (leakCountEl) leakCountEl.textContent = `${selectedLeaks} detectado${selectedLeaks !== 1 ? 's' : ''}`;
 
-    // Cambiar dinámicamente el mensaje según la fuga principal marcada
-    if (cbCurious && cbSlowWeb) {
-        titleEl.innerHTML = "Web ultra veloz +<br>Bot de filtro 24/7";
-        descEl.innerHTML = "Eliminas el abandono en tu sitio web y <strong class='text-white'>frenas el spam de curiosos</strong> en tu WhatsApp.";
+    // Mensaje dinámico orientado al cliente (sin palabras técnicas)
+    if (cbCurious && cbManual) {
+        titleEl.innerHTML = "Filtro automático 24/7 +<br>Cero trabajo repetitivo";
+        descEl.innerHTML = "Un asistente responde al instante, califica a los curiosos y <strong class='text-white'>te pasa solo a quienes tienen presupuesto para pagar.</strong>";
     } else if (cbCurious) {
         titleEl.innerHTML = "Menos chats vacíos,<br>más ventas cerradas";
-        descEl.innerHTML = "Tu equipo comercial pasa de responder dudas repetitivas a <strong class='text-white'>hablar solo con clientes con presupuesto.</strong>";
+        descEl.innerHTML = "Dejas de perder tiempo copiando y pegando precios para <strong class='text-white'>hablar solo con personas listas para comprar.</strong>";
+    } else if (cbTraffic) {
+        titleEl.innerHTML = "Publicidad rentable,<br>clientes directos";
+        descEl.innerHTML = "Alineamos tus anuncios para que dejen de traer clics perdidos y <strong class='text-white'>empiecen a traer dinero real a tu cuenta.</strong>";
     } else if (cbSlowWeb) {
-        titleEl.innerHTML = "Carga en 0.8 seg,<br>cero fuga de visitas";
-        descEl.innerHTML = "Transformamos tu tráfico en prospectos calificados con <strong class='text-white'>arquitectura de alta conversión CRO.</strong>";
-    } else if (cbRoas) {
-        titleEl.innerHTML = "Atribución clara,<br>retorno medible";
-        descEl.innerHTML = "Sabrás exactamente <strong class='text-white'>cuántos dólares bancarios reales</strong> genera cada peso invertido en pauta.";
+        titleEl.innerHTML = "Una web vendedora,<br>cero visitas perdidas";
+        descEl.innerHTML = "Tu página cargará en menos de un segundo y guiará al cliente directo a comprar <strong class='text-white'>sin que se aburra y se vaya.</strong>";
+    } else if (cbManual) {
+        titleEl.innerHTML = "Seguimiento automático,<br>más tiempo libre";
+        descEl.innerHTML = "Tu negocio envía recordatorios y ofertas solo, <strong class='text-white'>recuperando clientes que dabas por perdidos.</strong>";
     } else {
-        titleEl.innerHTML = "Sistema Comercial<br>en Piloto Automático";
-        descEl.innerHTML = "Integración total de pauta, web CRO, bot de WhatsApp y CRM <strong class='text-white'>para escalar sin desorden.</strong>";
+        titleEl.innerHTML = "Tu Negocio Organizado<br>y Listo para Crecer";
+        descEl.innerHTML = "Unimos publicidad, página web y WhatsApp <strong class='text-white'>para que vendas más con menos esfuerzo diario.</strong>";
     }
 
-    // Personalizar botón CTA
+    // Texto del botón CTA
     if (ctaBtn) {
         const spanBtn = ctaBtn.querySelector('span:first-child');
         if (spanBtn) {
             spanBtn.textContent = selectedLeaks > 0
-                ? `Eliminar las ${selectedLeaks} fugas en mi negocio`
-                : 'Estructurar mi sistema comercial';
+                ? `Resolver estos ${selectedLeaks} problemas en mi negocio`
+                : 'Estructurar mi sistema de ventas';
         }
     }
 }

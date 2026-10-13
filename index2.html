@@ -16,6 +16,9 @@
         rel="stylesheet">
 
     <style>
+        /* ==========================================================================
+       CONFIGURACIÓN BASE DE TEMAS & SCROLLBAR
+       ========================================================================== */
         html.dark body {
             background-color: #07020d;
             color: #f1f5f9;
@@ -75,6 +78,179 @@
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: rgba(168, 85, 247, 0.3);
             border-radius: 4px;
+        }
+
+        /* ==========================================================================
+       ANIMACIONES DE ENTRADA, GLOW & FLOTACIÓN
+       ========================================================================== */
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(0.5deg);
+            }
+        }
+
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+            }
+        }
+
+        .glow-purple {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+       EFECTOS INTERACTIVOS & DIBUJO SVG
+       ========================================================================== */
+        .path-animated {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2.5s ease-in-out forwards;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .notification-pop {
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Spotlights y Efectos 3D */
+        .hero-spotlight {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 1;
+            animation: spotlightPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes spotlightPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(-45%, -55%) scale(1.2) rotate(15deg);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes fakeCursorMove {
+            0% {
+                opacity: 0;
+                transform: translate(180px, 120px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translate(140px, 40px);
+            }
+
+            30% {
+                transform: translate(140px, 40px) scale(0.85);
+            }
+
+            35% {
+                transform: translate(140px, 40px) scale(1);
+            }
+
+            60% {
+                transform: translate(40px, 100px);
+            }
+
+            75% {
+                transform: translate(40px, 100px) scale(0.85);
+            }
+
+            80% {
+                transform: translate(40px, 100px) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(180px, 120px);
+            }
+        }
+
+        .simulated-cursor {
+            position: absolute;
+            z-index: 50;
+            pointer-events: none;
+            animation: fakeCursorMove 7s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
+
+        .glass-panel-glow {
+            position: relative;
+        }
+
+        .glass-panel-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(90deg, #a855f7, #10b981, #a855f7);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background-size: 200% 100%;
+            animation: gradientShift 3s linear infinite;
+        }
+
+        .glass-panel-glow:hover::before {
+            opacity: 0.8;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            100% {
+                background-position: 200% 0%;
+            }
+        }
+
+        .tilt-card {
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
         }
     </style>
 </head>
@@ -141,7 +317,7 @@
                 </button>
 
                 <button onclick="openModal()"
-                    class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-electric-600 to-electric-500 text-white font-bold text-xs shadow-lg shadow-electric-600/25 active:scale-95 flex items-center gap-1.5 transition">
+                    class="glow-purple px-4 py-2.5 rounded-xl bg-gradient-to-r from-electric-600 to-electric-500 text-white font-bold text-xs shadow-lg shadow-electric-600/25 active:scale-95 flex items-center gap-1.5 transition">
                     <span>Diagnóstico gratuito</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -280,11 +456,28 @@
                             </div>
                         </div>
 
-                        <!-- Dashboard Preview -->
+                        <!-- Dashboard Preview Interactivo con Cursor de IA -->
                         <div class="lg:col-span-6 relative">
-                            <div class="relative mx-auto max-w-lg lg:max-w-none">
+
+                            <!-- Luz de fondo animada (Spotlight) -->
+                            <div class="hero-spotlight"></div>
+
+                            <div class="relative mx-auto max-w-lg lg:max-w-none z-10">
+
+                                <!-- Cursor simulado interactivo -->
+                                <div class="simulated-cursor hidden sm:block">
+                                    <svg class="w-6 h-6 text-electric-500 drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+                                        viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.7L6.87 19.95C6.46 20.36 5.75 20.07 5.75 19.5V3.5C5.75 2.93 6.46 2.64 6.87 3.05L18.9 15.08C19.31 15.49 19.02 16.2 18.45 16.2H14.1L16.28 21C16.5 21.5 16.28 22.1 15.78 22.33L13.64 21.97Z" />
+                                    </svg>
+                                    <span
+                                        class="bg-electric-600 text-white text-[9px] font-mono px-2 py-0.5 rounded-full shadow-lg font-bold ml-3 -mt-2 inline-block">IA
+                                        Vendiendo...</span>
+                                </div>
+
                                 <div
-                                    class="rounded-3xl glass-panel p-6 sm:p-7 shadow-2xl relative z-10 border border-slate-200 dark:border-white/[0.12] bg-white/95 dark:bg-deep-900/90 text-slate-900 dark:text-white">
+                                    class="rounded-3xl glass-panel glass-panel-glow tilt-card p-6 sm:p-7 shadow-2xl relative z-10 border border-slate-200 dark:border-white/[0.12] bg-white/95 dark:bg-deep-900/90 text-slate-900 dark:text-white">
 
                                     <div
                                         class="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3 mb-5">
@@ -307,29 +500,27 @@
 
                                     <div class="grid grid-cols-3 gap-3 mb-5">
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05]">
+                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">VENTAS
                                                 REALES</span>
-                                            <p
-                                                class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5">
-                                                $124,850</p>
+                                            <p class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5"
+                                                id="hero-sales-counter">$124,850</p>
                                             <span
                                                 class="text-[10px] font-bold text-growth-600 dark:text-growth-400 flex items-center gap-0.5">▲
                                                 +38.6%</span>
                                         </div>
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05]">
+                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">LEADS
                                                 COMPRADORES</span>
-                                            <p
-                                                class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5">
-                                                1,237</p>
+                                            <p class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5"
+                                                id="hero-leads-counter">1,237</p>
                                             <span
                                                 class="text-[10px] font-bold text-growth-600 dark:text-growth-400 flex items-center gap-0.5">▲
                                                 +45.2%</span>
                                         </div>
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05]">
+                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">RETORNO
                                                 (ROAS)</span>
                                             <p
@@ -346,16 +537,17 @@
                                         <div class="flex justify-between text-xs font-mono text-slate-500 mb-2">
                                             <span>Curva de Adquisición vs Inversión</span>
                                             <span
-                                                class="text-electric-600 dark:text-electric-400 font-semibold">Escalamiento
+                                                class="text-electric-600 dark:text-electric-400 font-semibold animate-pulse">Escalamiento
                                                 Predecible</span>
                                         </div>
                                         <svg class="w-full h-24" viewBox="0 0 320 80" preserveAspectRatio="none">
                                             <path d="M0,70 Q40,65 80,50 T160,35 T240,40 T320,12 L320,80 L0,80 Z"
                                                 fill="rgba(147, 51, 234, 0.15)" />
-                                            <path d="M0,70 Q40,65 80,50 T160,35 T240,40 T320,12" fill="none"
-                                                stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" />
+                                            <path class="path-animated" d="M0,70 Q40,65 80,50 T160,35 T240,40 T320,12"
+                                                fill="none" stroke="#a855f7" stroke-width="2.5"
+                                                stroke-linecap="round" />
                                             <circle cx="160" cy="35" r="4" fill="#a855f7" stroke="#ffffff"
-                                                stroke-width="2" />
+                                                stroke-width="2" class="animate-ping" />
                                             <circle cx="320" cy="12" r="4.5" fill="#10b981" stroke="#ffffff"
                                                 stroke-width="2" />
                                         </svg>
@@ -380,10 +572,11 @@
                                     </div>
                                 </div>
 
+                                <!-- Notificación emergente de ventas -->
                                 <div
-                                    class="absolute -bottom-5 -left-5 p-3.5 rounded-2xl glass-panel bg-white/95 dark:bg-deep-900/95 border-growth-500/30 shadow-2xl flex items-center gap-3 z-20 animate-float">
+                                    class="absolute -bottom-5 -left-5 p-3.5 rounded-2xl glass-panel bg-white/95 dark:bg-deep-900/95 border-growth-500/30 shadow-2xl flex items-center gap-3 z-20 animate-float notification-pop">
                                     <div
-                                        class="w-9 h-9 rounded-xl bg-growth-500/20 border border-growth-500/40 flex items-center justify-center text-growth-600 dark:text-growth-400 font-black text-sm">
+                                        class="w-9 h-9 rounded-xl bg-growth-500/20 border border-growth-500/40 flex items-center justify-center text-growth-600 dark:text-growth-400 font-black text-sm shrink-0">
                                         ✓</div>
                                     <div>
                                         <p class="text-xs font-bold text-slate-900 dark:text-white">Venta cerrada
@@ -393,6 +586,7 @@
                                         </p>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -400,7 +594,7 @@
                 </div>
             </section>
 
-            <!-- INTERACTIVE WIDGET 1: INICIO - ROAS & GROWTH PREDICTOR -->
+            <!-- INTERACTIVE WIDGET 1: INICIO - TRANSFORMACIÓN OPERATIVA & DIAGNÓSTICO -->
             <section
                 class="py-14 bg-white/60 dark:bg-deep-950/60 border-y border-slate-200 dark:border-white/[0.06] relative">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -408,27 +602,27 @@
                     <div class="text-center max-w-2xl mx-auto mb-10">
                         <span
                             class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">//
-                            SIMULADOR INTERACTIVO 01</span>
+                            SIMULADOR DE IMPACTO OPERATIVO</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
-                            Calcula tu retorno con un <span class="text-gradient">Sistema Predictivo</span>
+                            Calcula cuánto tiempo y ventas recuperas con <span class="text-gradient">NextGrow</span>
                         </h2>
                         <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1.5">
-                            Elige tu modelo de negocio e inversión mensual para proyectar tus ventas con arquitectura
-                            NextGrow:
+                            Selecciona tu modelo e indica los cuellos de botella actuales de tu empresa:
                         </p>
                     </div>
 
                     <div
                         class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 rounded-3xl glass-panel border border-electric-500/30 shadow-xl">
 
-                        <!-- Controls -->
+                        <!-- Controls (Columna Izquierda) -->
                         <div class="lg:col-span-7 space-y-6">
 
-                            <!-- Sector Selector -->
+                            <!-- 1. Sector Selector -->
                             <div>
                                 <label
-                                    class="block text-xs font-bold font-mono text-slate-700 dark:text-slate-300 mb-2">1.
-                                    Selecciona tu industria o modelo:</label>
+                                    class="block text-xs font-bold font-mono text-slate-700 dark:text-slate-300 mb-2">
+                                    1. Selecciona tu industria o modelo:
+                                </label>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                     <button type="button" onclick="setSimIndustry('b2b', this)"
                                         class="sim-ind-btn px-3 py-2 rounded-xl text-xs font-bold border transition bg-electric-600 text-white border-electric-500 shadow-md">
@@ -449,7 +643,7 @@
                                 </div>
                             </div>
 
-                            <!-- Slider Inversión -->
+                            <!-- 2. Slider Inversión -->
                             <div>
                                 <div class="flex justify-between items-center text-xs font-bold mb-2">
                                     <span class="text-slate-700 dark:text-slate-300">2. Inversión estimada mensual en
@@ -468,81 +662,103 @@
                                 </div>
                             </div>
 
-                            <!-- Checklist Quick Diagnostic -->
+                            <!-- 3. Checklist Quick Diagnostic (REACTIVO) -->
                             <div
                                 class="p-4 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/10">
                                 <span
-                                    class="text-[11px] font-bold font-mono text-slate-700 dark:text-slate-300 block mb-2">3.
-                                    Marca los problemas actuales de tu empresa:</span>
+                                    class="text-[11px] font-bold font-mono text-slate-700 dark:text-slate-300 block mb-2">
+                                    3. Marca los problemas que frenan tu negocio hoy:
+                                </span>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                                     <label
                                         class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" checked onchange="updateHomeSim()"
+                                        <input type="checkbox" id="cb-traffic" checked onchange="updateHomeSim()"
                                             class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
                                         <span>Tráfico llega pero no compra</span>
                                     </label>
                                     <label
                                         class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" checked onchange="updateHomeSim()"
+                                        <input type="checkbox" id="cb-curious" checked onchange="updateHomeSim()"
                                             class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Curiosos en WhatsApp</span>
+                                        <span>Curiosos saturando WhatsApp</span>
                                     </label>
                                     <label
                                         class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" onchange="updateHomeSim()"
+                                        <input type="checkbox" id="cb-slowweb" onchange="updateHomeSim()"
                                             class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Web lenta o sin embudo</span>
+                                        <span>Web lenta o sin embudo CRO</span>
                                     </label>
                                     <label
                                         class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" onchange="updateHomeSim()"
+                                        <input type="checkbox" id="cb-roas" onchange="updateHomeSim()"
                                             class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Cero atribución de ROAS real</span>
+                                        <span>Sin atribución de ROAS real</span>
                                     </label>
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- Projection Display Box -->
+                        <!-- Projection Display Box (Columna Derecha Potenciada) -->
                         <div
                             class="lg:col-span-5 p-6 rounded-3xl bg-slate-900 text-white border border-purple-500/20 shadow-2xl relative overflow-hidden text-center space-y-4">
 
                             <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">PROYECCIÓN
-                                    ESTIMADA</span>
-                                <span id="home-sim-roas-badge"
-                                    class="px-2.5 py-0.5 rounded-full bg-growth-500/20 text-growth-400 border border-growth-500/30 text-xs font-mono font-bold">
-                                    ROAS x4.8
+                                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">DIAGNÓSTICO
+                                    TÉCNICO</span>
+                                <span id="home-sim-status-badge"
+                                    class="px-2.5 py-0.5 rounded-full bg-growth-500/20 text-growth-400 border border-growth-500/30 text-[10px] font-mono font-bold uppercase">
+                                    SISTEMA EN PILOTO AUTOMÁTICO
                                 </span>
                             </div>
 
-                            <div class="space-y-1">
-                                <span class="text-xs text-slate-400 font-mono">FACTURACIÓN ESTIMADA MENSUAL</span>
-                                <p id="home-sim-revenue"
-                                    class="text-3xl sm:text-4xl font-black text-growth-400 font-mono tracking-tight">
-                                    $7,200 USD</p>
-                                <p id="home-sim-profit" class="text-[11px] text-slate-300 font-medium">Margen neto
-                                    proyectado: <strong class="text-white font-mono">$5,700 USD</strong></p>
+                            <!-- Mensaje Dinámico -->
+                            <div class="space-y-1.5 py-1">
+                                <span
+                                    class="text-[10px] text-slate-400 font-mono uppercase tracking-widest block">TRANSFORMACIÓN
+                                    ESTIMADA</span>
+                                <p id="home-sim-impact-title"
+                                    class="text-xl sm:text-2xl font-black text-growth-400 tracking-tight leading-snug">
+                                    Menos chats vacíos,<br>más ventas cerradas
+                                </p>
+                                <p id="home-sim-impact-desc"
+                                    class="text-xs text-slate-300 font-medium pt-1 max-w-xs mx-auto leading-relaxed">
+                                    Tu equipo comercial pasa de responder dudas repetitivas a <strong
+                                        class="text-white">hablar solo con compradores calificados.</strong>
+                                </p>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-3 pt-2 text-left">
-                                <div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10">
-                                    <span class="text-[10px] font-mono text-slate-400 block">LEADS CALIFICADOS</span>
-                                    <span id="home-sim-leads" class="text-base font-bold font-mono text-white">187
-                                        prospectos</span>
+                            <!-- Métricas Impactantes -->
+                            <div class="grid grid-cols-2 gap-3 pt-1 text-left">
+                                <div class="p-3 rounded-2xl bg-white/[0.06] border border-white/10">
+                                    <span class="text-[9px] font-mono text-slate-400 block uppercase">FILTRADO
+                                        AUTOMÁTICO</span>
+                                    <span id="home-sim-junk-filtered"
+                                        class="text-base font-bold font-mono text-growth-400 block mt-0.5">330
+                                        chats</span>
+                                    <span class="text-[9px] text-slate-400 block">Curiosos fuera de tu tiempo</span>
                                 </div>
-                                <div class="p-2.5 rounded-xl bg-white/[0.06] border border-white/10">
-                                    <span class="text-[10px] font-mono text-slate-400 block">CLIENTES CERRADOS</span>
-                                    <span id="home-sim-clients" class="text-base font-bold font-mono text-white">14
-                                        ventas</span>
+                                <div class="p-3 rounded-2xl bg-white/[0.06] border border-white/10">
+                                    <span class="text-[9px] font-mono text-slate-400 block uppercase">TIEMPO
+                                        RECUPERADO</span>
+                                    <span id="home-sim-hours-saved"
+                                        class="text-base font-bold font-mono text-white block mt-0.5">~28 hrs/mes</span>
+                                    <span class="text-[9px] text-slate-400 block">Reinvertidas en cerrar clientes</span>
                                 </div>
                             </div>
 
-                            <div class="pt-2">
-                                <button onclick="openModal()"
-                                    class="w-full py-3 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs transition shadow-lg shadow-growth-500/20 active:scale-95 flex items-center justify-center gap-1.5">
-                                    <span>Quiero estructurar esta proyección</span>
+                            <!-- Indicador de Fugas Detectadas -->
+                            <div
+                                class="p-2.5 rounded-xl bg-purple-950/50 border border-purple-500/30 text-[10px] font-mono text-purple-200 flex items-center justify-between">
+                                <span>FUGAS DETECTADAS:</span>
+                                <span id="home-sim-leak-count" class="font-bold text-rose-400">2 problemas
+                                    seleccionados</span>
+                            </div>
+
+                            <div class="pt-1">
+                                <button onclick="openModal()" id="home-sim-cta-btn"
+                                    class="w-full py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs transition shadow-lg shadow-growth-500/20 active:scale-95 flex items-center justify-center gap-1.5">
+                                    <span>Eliminar estas fugas en mi negocio</span>
                                     <span>➔</span>
                                 </button>
                             </div>
@@ -554,110 +770,160 @@
                 </div>
             </section>
 
+            <!-- SECCIÓN: DIAGNÓSTICO DE FUGAS (COPY DE ALTO IMPACTO EN DOLOR) -->
             <section
-                class="py-16 md:py-20 bg-slate-100/50 dark:bg-deep-900/50 border-y border-slate-200 dark:border-white/[0.06]">
+                class="py-16 md:py-20 bg-slate-100/50 dark:bg-deep-900/50 border-y border-slate-200 dark:border-white/[0.06] relative">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <div class="text-center max-w-2xl mx-auto mb-12">
+                    <div class="text-center max-w-3xl mx-auto mb-12 space-y-2">
                         <span
-                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">[
-                            DIAGNÓSTICO EN TIEMPO REAL ]</span>
-                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-2">
-                            ¿Dónde se está fugando tu dinero hoy?
+                            class="text-xs font-mono text-rose-500 uppercase tracking-widest font-extrabold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20">
+                            🚨 AUDITORÍA DE FUGAS CRÍTICAS
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white pt-2">
+                            ¿A dónde se está <span
+                                class="text-rose-500 underline decoration-rose-500/30 underline-offset-8">tirando a la
+                                basura</span> tu dinero hoy?
                         </h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2">
-                            La diferencia entre los que escalan y los que queman presupuesto es la arquitectura técnica:
+                        <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm pt-1 max-w-xl mx-auto">
+                            No es que no vendas. Es que estás pagando por tráfico que entra, satura a tu equipo y se va
+                            sin dejar un solo dólar en tu cuenta bancaria.
                         </p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                        <div class="p-6 rounded-3xl glass-panel border border-slate-200 dark:border-white/[0.08]">
-                            <div class="flex items-center justify-between mb-4">
-                                <span
-                                    class="text-[11px] font-mono text-rose-500 bg-rose-500/10 px-2.5 py-1 rounded-full border border-rose-500/20 font-bold">FUGA
-                                    #01: ADQUISICIÓN</span>
-                                <span class="text-xs font-bold text-rose-500 font-mono">-72% TRAFFIC LOSS</span>
-                            </div>
+                        <!-- TARJETA 01: ADQUISICIÓN -->
+                        <div
+                            class="p-6 rounded-3xl glass-panel border border-rose-500/30 hover:border-rose-500/60 transition-all duration-300 reveal-on-scroll relative overflow-hidden group">
                             <div
-                                class="p-3 rounded-2xl bg-slate-50 dark:bg-deep-950/60 border border-slate-200 dark:border-white/[0.05] my-3">
-                                <div class="flex justify-between text-[11px] font-mono mb-1 text-slate-500">
-                                    <span>Tráfico frío pagado</span>
-                                    <span class="text-rose-500 font-bold">Sin intención</span>
+                                class="absolute top-0 right-0 w-24 h-24 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all">
+                            </div>
+
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-[10px] font-mono text-rose-500 bg-rose-500/10 px-2.5 py-1 rounded-full border border-rose-500/20 font-black tracking-wider">
+                                    FUGA #01: ANUNCIOS DESPERDICIADOS
+                                </span>
+                                <span class="text-xs font-extrabold text-rose-500 font-mono animate-pulse">
+                                    💸 80% PRESUPUESTO QUEMADO
+                                </span>
+                            </div>
+
+                            <div
+                                class="p-3 rounded-2xl bg-rose-500/5 dark:bg-rose-950/20 border border-rose-500/20 my-3 relative z-10">
+                                <div
+                                    class="flex justify-between text-[11px] font-mono mb-1 text-slate-500 dark:text-slate-400">
+                                    <span>Clics pagados en Facebook/Google</span>
+                                    <span class="text-rose-500 font-black">Se van sin comprar</span>
                                 </div>
                                 <div class="w-full bg-slate-200 dark:bg-white/10 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-rose-500 h-full rounded-full" style="width: 82%"></div>
+                                    <div class="bg-rose-500 h-full rounded-full" style="width: 85%"></div>
                                 </div>
                             </div>
-                            <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase mt-4">Pauta sin
-                                landing ni embudo</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-1.5 leading-relaxed">
-                                El tráfico llega pero se evapora porque no hay una página estructurada para convertir
-                                clics en compras.
+
+                            <h3
+                                class="text-base font-black text-slate-900 dark:text-white uppercase mt-4 group-hover:text-rose-500 transition-colors">
+                                Regalarle dinero a Mark Zuckerberg
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-2 leading-relaxed">
+                                Pagas por miles de clics que llegan a una web sin estrategia. La gente entra, no
+                                entiende qué vendes, se aburre en 3 segundos y se va a comprarle a tu competencia.
                             </p>
                         </div>
 
-                        <div class="p-6 rounded-3xl glass-panel border border-slate-200 dark:border-white/[0.08]">
-                            <div class="flex items-center justify-between mb-4">
-                                <span
-                                    class="text-[11px] font-mono text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20 font-bold">FUGA
-                                    #02: COMERCIAL</span>
-                                <span class="text-xs font-bold text-amber-500 font-mono">HORAS PERDIDAS</span>
-                            </div>
+                        <!-- TARJETA 02: COMERCIAL -->
+                        <div
+                            class="p-6 rounded-3xl glass-panel border border-amber-500/30 hover:border-amber-500/60 transition-all duration-300 reveal-on-scroll relative overflow-hidden group">
                             <div
-                                class="p-3 rounded-2xl bg-slate-50 dark:bg-deep-950/60 border border-slate-200 dark:border-white/[0.05] my-3">
+                                class="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all">
+                            </div>
+
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-[10px] font-mono text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20 font-black tracking-wider">
+                                    FUGA #02: DESGASTE HUMANO
+                                </span>
+                                <span class="text-xs font-extrabold text-amber-500 font-mono">
+                                    ⏳ SUELDOS PERDIDOS
+                                </span>
+                            </div>
+
+                            <div
+                                class="p-3 rounded-2xl bg-amber-500/5 dark:bg-amber-950/20 border border-amber-500/20 my-3 relative z-10">
                                 <div
-                                    class="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-1">
-                                    <span>100 Mensajes WhatsApp</span>
-                                    <span class="text-amber-500 font-bold">95 sin presupuesto</span>
+                                    class="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-1">
+                                    <span>100 Mensajes en WhatsApp</span>
+                                    <span class="text-amber-500 font-black">90 "Solo preguntaba"</span>
                                 </div>
                                 <div class="flex gap-1 h-2 my-1.5">
                                     <div class="bg-amber-500 rounded-l-full" style="width: 90%"></div>
                                     <div class="bg-emerald-500 rounded-r-full" style="width: 10%"></div>
                                 </div>
                             </div>
-                            <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase mt-4">Curiosos
-                                saturando asesores</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-1.5 leading-relaxed">
-                                Tus asesores pierden el día respondiendo a personas que jamás tendrán presupuesto para
-                                comprar.
+
+                            <h3
+                                class="text-base font-black text-slate-900 dark:text-white uppercase mt-4 group-hover:text-amber-500 transition-colors">
+                                Asesores pagados para responder "Hola, precio"
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-2 leading-relaxed">
+                                Tus vendedores pasan 8 horas diarias copiando y pegando textos a curiosos sin tarjeta ni
+                                presupuesto. Se agotan, se frustran y pierden los pocos clientes que sí querían comprar.
                             </p>
                         </div>
 
-                        <div class="p-6 rounded-3xl glass-panel border border-slate-200 dark:border-white/[0.08]">
-                            <div class="flex items-center justify-between mb-4">
-                                <span
-                                    class="text-[11px] font-mono text-electric-600 dark:text-electric-400 bg-electric-500/10 px-2.5 py-1 rounded-full border border-electric-500/20 font-bold">FUGA
-                                    #03: OPERACIÓN</span>
-                                <span class="text-xs font-bold text-electric-600 dark:text-electric-400 font-mono">0
-                                    ATRIBUCIÓN</span>
-                            </div>
+                        <!-- TARJETA 03: OPERACIÓN / ATRIBUCIÓN -->
+                        <div
+                            class="p-6 rounded-3xl glass-panel border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 reveal-on-scroll relative overflow-hidden group">
                             <div
-                                class="p-3 rounded-2xl bg-slate-50 dark:bg-deep-950/60 border border-slate-200 dark:border-white/[0.05] my-3">
-                                <div class="flex justify-between text-[11px] font-mono text-slate-500 mb-1">
-                                    <span>Agencia: <strong class="text-rose-500 font-bold">0.8x ROAS</strong></span>
-                                    <span>NextGrow: <strong class="text-growth-600 dark:text-growth-400 font-bold">4.7x
-                                            ROAS</strong></span>
+                                class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all">
+                            </div>
+
+                            <div class="flex items-center justify-between mb-4 relative z-10">
+                                <span
+                                    class="text-[10px] font-mono text-electric-600 dark:text-electric-400 bg-electric-500/10 px-2.5 py-1 rounded-full border border-electric-500/20 font-black tracking-wider">
+                                    FUGA #03: CEGUERA TOTAL
+                                </span>
+                                <span class="text-xs font-extrabold text-rose-500 dark:text-rose-400 font-mono">
+                                    🙈 DECISIONES A ACIENTAS
+                                </span>
+                            </div>
+
+                            <div
+                                class="p-3 rounded-2xl bg-purple-500/5 dark:bg-purple-950/20 border border-purple-500/20 my-3 relative z-10">
+                                <div
+                                    class="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-1">
+                                    <span>Agencias tradicionales: <strong class="text-rose-500">Métricas de
+                                            Likes</strong></span>
+                                    <span>NextGrow: <strong class="text-growth-600 dark:text-growth-400">Plata en el
+                                            banco</strong></span>
                                 </div>
                                 <div class="w-full bg-slate-200 dark:bg-white/10 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-gradient-to-r from-electric-500 to-growth-400 h-full rounded-full"
+                                    <div class="bg-gradient-to-r from-rose-500 via-purple-500 to-growth-400 h-full rounded-full"
                                         style="width: 88%"></div>
                                 </div>
                             </div>
-                            <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase mt-4">Reportes
-                                sin retorno bancario</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-1.5 leading-relaxed">
-                                Reemplazamos las métricas vanidosas por atribución directa a tu facturación medible.
+
+                            <h3
+                                class="text-base font-black text-slate-900 dark:text-white uppercase mt-4 group-hover:text-electric-400 transition-colors">
+                                Reportes bonitos que no pagan la nómina
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs mt-2 leading-relaxed">
+                                Te entregan PDFs llenos de "Alcance", "Impresiones" y "Seguidores", pero cuando miras tu
+                                cuenta bancaria a fin de mes no entiendes por qué no hay ganancias reales.
                             </p>
                         </div>
 
                     </div>
 
-                    <div class="text-center mt-10">
-                        <button onclick="openModal()"
-                            class="px-6 py-2.5 rounded-full bg-purple-50 dark:bg-white/[0.08] hover:bg-purple-100 text-electric-700 dark:text-white text-xs font-bold transition border border-purple-200 dark:border-white/10 shadow-sm">
-                            Solicitar auditoría técnica gratuita →
+                    <!-- Botón CTA con tono de urgencia -->
+                    <div class="text-center mt-12">
+                        <button onclick="openModal()" class="glow-purple px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-purple-600 to-electric-600 hover:scale-105 text-slate-900 dark:text-white text-xs sm:text-sm font-black transition-all shadow-xl active:scale-95">
+                            🔥 FRENAR EL DESPERDICIO DE DINERO EN MI EMPRESA →
                         </button>
+                        <p class="text-[10px] font-mono text-slate-400 mt-2">
+                            Sin compromisos • Auditoría técnica de 30 minutos sin costo
+                        </p>
                     </div>
 
                 </div>

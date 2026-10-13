@@ -17,8 +17,8 @@
 
     <style>
         /* ==========================================================================
-       CONFIGURACIÓN BASE DE TEMAS & SCROLLBAR
-       ========================================================================== */
+    1. CONFIGURACIÓN BASE DE TEMAS & VARIABLES DE COLOR
+    ========================================================================== */
         html.dark body {
             background-color: #07020d;
             color: #f1f5f9;
@@ -29,37 +29,111 @@
             color: #1e1b4b;
         }
 
-        .mesh-grid {
-            background-image: radial-gradient(rgba(147, 51, 234, 0.15) 1px, transparent 1px);
-            background-size: 32px 32px;
+        /* Morados institucionales con alto contraste */
+        .bg-brand-purple {
+            background-color: #4c1d95 !important;
         }
 
-        html:not(.dark) .mesh-grid {
-            background-image: radial-gradient(rgba(147, 51, 234, 0.08) 1px, transparent 1px);
-            background-size: 28px 28px;
+        html.dark .bg-brand-purple {
+            background-color: #6b21a8 !important;
         }
 
+        .text-brand-purple {
+            color: #3b0764 !important;
+        }
+
+        html.dark .text-brand-purple {
+            color: #c084fc !important;
+            /* Morado claro brillante para el modo oscuro */
+        }
+
+        /* ==========================================================================
+    2. BOTÓN "VOLVER A SERVICIOS" (ALTO CONTRASTE Y ADAPTABILIDAD)
+    ========================================================================== */
+        .btn-back-services {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 1rem;
+            background: rgba(59, 7, 100, 0.08);
+            color: #3b0764;
+            font-weight: 800;
+            font-size: 0.875rem;
+            border: 1.5px solid rgba(76, 29, 149, 0.3);
+            box-shadow: 0 4px 12px rgba(59, 7, 100, 0.08);
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        html.dark .btn-back-services {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-back-services:hover {
+            background: #4c1d95;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(76, 29, 149, 0.3);
+        }
+
+        html.dark .btn-back-services:hover {
+            background: #c084fc;
+            color: #07020d;
+            border-color: #c084fc;
+        }
+
+        /* ==========================================================================
+    3. PANELES GLASS & TARJETAS (ADAPTADOS A DARK MODE)
+    ========================================================================== */
         .glass-panel {
             transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         html.dark .glass-panel {
-            background: rgba(21, 9, 42, 0.75);
+            background: rgba(21, 9, 42, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         html:not(.dark) .glass-panel {
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(147, 51, 234, 0.12);
-            box-shadow: 0 10px 25px -5px rgba(88, 28, 135, 0.06);
+            border: 1px solid rgba(59, 7, 100, 0.12);
+            box-shadow: 0 10px 25px -5px rgba(59, 7, 100, 0.08);
+        }
+
+        /* Tarjetas de Métricas de Ads corregidas para MODO OSCURO */
+        .metric-badge-ads {
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 0.8125rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        html:not(.dark) .metric-badge-ads {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(59, 7, 100, 0.15);
+            color: #1e1b4b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        html.dark .metric-badge-ads {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f1f5f9;
         }
 
         .text-gradient {
-            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            background: linear-gradient(135deg, #4c1d95 0%, #7e22ce 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -70,19 +144,27 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .mesh-grid {
+            background-image: radial-gradient(rgba(147, 51, 234, 0.18) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        html:not(.dark) .mesh-grid {
+            background-image: radial-gradient(rgba(59, 7, 100, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
             height: 4px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.4);
             border-radius: 4px;
         }
 
-        /* ==========================================================================
-       ANIMACIONES DE ENTRADA, GLOW & FLOTACIÓN
-       ========================================================================== */
+        /* Animaciones */
         @keyframes floatSlow {
 
             0%,
@@ -103,11 +185,11 @@
 
             0%,
             100% {
-                box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+                box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
             }
 
             50% {
-                box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+                box-shadow: 0 0 30px rgba(168, 85, 247, 0.55);
             }
         }
 
@@ -127,130 +209,26 @@
             transform: translateY(0);
         }
 
-        /* ==========================================================================
-       EFECTOS INTERACTIVOS & DIBUJO SVG
-       ========================================================================== */
-        .path-animated {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: dash 2.5s ease-in-out forwards;
+        /* Corrección de contraste para secciones con fondo oscuro fijo (bg-slate-900) */
+        .bg-slate-900 .btn-back-services,
+        #view-automatizaciones .btn-back-services {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
         }
 
-        @keyframes dash {
-            to {
-                stroke-dashoffset: 0;
-            }
+        .bg-slate-900 .btn-back-services:hover,
+        #view-automatizaciones .btn-back-services:hover {
+            background: #c084fc !important;
+            color: #07020d !important;
+            border-color: #c084fc !important;
         }
 
-        .notification-pop {
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        /* Spotlights y Efectos 3D */
-        .hero-spotlight {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 1;
-            animation: spotlightPulse 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes spotlightPulse {
-            0% {
-                transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translate(-45%, -55%) scale(1.2) rotate(15deg);
-                opacity: 0.9;
-            }
-        }
-
-        @keyframes fakeCursorMove {
-            0% {
-                opacity: 0;
-                transform: translate(180px, 120px);
-            }
-
-            15% {
-                opacity: 1;
-                transform: translate(140px, 40px);
-            }
-
-            30% {
-                transform: translate(140px, 40px) scale(0.85);
-            }
-
-            35% {
-                transform: translate(140px, 40px) scale(1);
-            }
-
-            60% {
-                transform: translate(40px, 100px);
-            }
-
-            75% {
-                transform: translate(40px, 100px) scale(0.85);
-            }
-
-            80% {
-                transform: translate(40px, 100px) scale(1);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translate(180px, 120px);
-            }
-        }
-
-        .simulated-cursor {
-            position: absolute;
-            z-index: 50;
-            pointer-events: none;
-            animation: fakeCursorMove 7s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-        }
-
-        .glass-panel-glow {
-            position: relative;
-        }
-
-        .glass-panel-glow::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(90deg, #a855f7, #10b981, #a855f7);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            background-size: 200% 100%;
-            animation: gradientShift 3s linear infinite;
-        }
-
-        .glass-panel-glow:hover::before {
-            opacity: 0.8;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 0%;
-            }
-
-            100% {
-                background-position: 200% 0%;
-            }
-        }
-
-        .tilt-card {
-            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-            transform-style: preserve-3d;
+        /* Fuerza legibilidad de los textos en migas de pan sobre fondos oscuros fijos */
+        .bg-slate-900 .breadcrumb-title,
+        #view-automatizaciones .breadcrumb-title {
+            color: #c084fc !important;
+            /* Morado claro brillante siempre legible */
         }
     </style>
 </head>
@@ -259,13 +237,13 @@
     class="selection:bg-electric-600 selection:text-white antialiased overflow-x-hidden min-h-screen flex flex-col justify-between transition-colors duration-300">
 
     <header
-        class="sticky top-0 z-50 py-3 px-4 sm:px-6 lg:px-8 bg-white/85 dark:bg-deep-950/85 backdrop-blur-xl border-b border-purple-100 dark:border-white/[0.07] transition-colors duration-300">
+        class="sticky top-0 z-50 py-3 px-4 sm:px-6 lg:px-8 bg-white/90 dark:bg-deep-950/85 backdrop-blur-xl border-b border-purple-100 dark:border-white/[0.07] transition-colors duration-300">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
 
             <!-- Brand Logo -->
             <button onclick="switchView('inicio')" class="flex items-center gap-3 group text-left">
                 <div
-                    class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-electric-600 to-deep-900 p-0.5 shadow-lg shadow-electric-600/30 group-hover:scale-105 transition-transform">
+                    class="relative w-10 h-10 rounded-xl bg-brand-purple p-0.5 shadow-lg shadow-purple-950/30 group-hover:scale-105 transition-transform">
                     <div class="w-full h-full bg-deep-950 rounded-[10px] flex items-center justify-center">
                         <svg class="w-5 h-5 text-growth-400 group-hover:text-growth-300 transition-colors"
                             viewBox="0 0 24 24" fill="currentColor">
@@ -276,7 +254,7 @@
                 </div>
                 <div class="flex items-baseline">
                     <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">Next<span
-                            class="text-electric-600 dark:text-electric-400">Grow</span></span>
+                            class="text-brand-purple dark:text-growth-400">Grow</span></span>
                     <span class="w-1.5 h-1.5 rounded-full bg-growth-500 ml-1 animate-pulse"></span>
                 </div>
             </button>
@@ -285,7 +263,7 @@
             <nav
                 class="hidden md:flex items-center p-1 rounded-full bg-purple-50 dark:bg-white/[0.04] border border-purple-200/70 dark:border-white/[0.08] text-xs font-semibold">
                 <button id="nav-btn-inicio" onclick="switchView('inicio')"
-                    class="px-5 py-2 rounded-full transition-all duration-300 bg-electric-600 text-white shadow-md shadow-electric-600/30">
+                    class="px-5 py-2 rounded-full transition-all duration-300 bg-brand-purple text-white shadow-md shadow-purple-950/30">
                     Inicio
                 </button>
                 <button id="nav-btn-servicios" onclick="switchView('servicios')"
@@ -301,14 +279,14 @@
             <!-- Theme Switcher + CTA -->
             <div class="hidden sm:flex items-center gap-3">
                 <button onclick="toggleTheme()"
-                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 hover:border-electric-500/50 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
+                    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 hover:border-purple-900/50 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
                     title="Cambiar tema">
                     <svg id="theme-sun" class="w-4 h-4 text-amber-400 hidden dark:block" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <svg id="theme-moon" class="w-4 h-4 text-electric-600 block dark:hidden" fill="none"
+                    <svg id="theme-moon" class="w-4 h-4 text-brand-purple block dark:hidden" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -317,7 +295,7 @@
                 </button>
 
                 <button onclick="openModal()"
-                    class="glow-purple px-4 py-2.5 rounded-xl bg-gradient-to-r from-electric-600 to-electric-500 text-white font-bold text-xs shadow-lg shadow-electric-600/25 active:scale-95 flex items-center gap-1.5 transition">
+                    class="glow-purple px-4 py-2.5 rounded-xl bg-brand-purple text-white font-bold text-xs shadow-lg shadow-purple-950/25 active:scale-95 flex items-center gap-1.5 transition">
                     <span>Diagnóstico gratuito</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -335,7 +313,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <svg class="w-4 h-4 text-electric-600 block dark:hidden" fill="none" stroke="currentColor"
+                    <svg class="w-4 h-4 text-brand-purple block dark:hidden" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -356,20 +334,23 @@
         <div id="mobile-menu"
             class="hidden md:hidden p-4 rounded-2xl bg-slate-100 dark:bg-deep-900 border border-purple-200 dark:border-white/10 mt-3 space-y-2 shadow-2xl transition-all">
             <button onclick="switchView('inicio'); toggleMobileNav();"
-                class="block w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm text-electric-700 dark:text-electric-400 bg-electric-500/10 hover:bg-electric-500/20">Inicio</button>
+                class="block w-full text-left px-4 py-2.5 rounded-xl font-bold text-sm text-brand-purple dark:text-growth-400 bg-purple-500/10 hover:bg-purple-500/20">Inicio</button>
             <button onclick="switchView('servicios'); toggleMobileNav();"
                 class="block w-full text-left px-4 py-2.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-white/5">Servicios
                 & Ecosistema</button>
             <button onclick="switchView('blog'); toggleMobileNav();"
                 class="block w-full text-left px-4 py-2.5 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-white/5">Blog</button>
+            <button onclick="switchView('publicidad-digital'); toggleMobileNav();"
+                class="block w-full text-left px-4 py-2 rounded-xl font-bold text-xs text-brand-purple dark:text-growth-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
+                Publicidad Digital (Meta & Google)</button>
             <button onclick="switchView('desarrollo-web'); toggleMobileNav();"
-                class="block w-full text-left px-4 py-2 rounded-xl font-medium text-xs text-electric-600 dark:text-electric-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
+                class="block w-full text-left px-4 py-2 rounded-xl font-medium text-xs text-brand-purple dark:text-electric-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
                 Desarrollo Web & Embudos</button>
             <button onclick="switchView('automatizaciones'); toggleMobileNav();"
                 class="block w-full text-left px-4 py-2 rounded-xl font-bold text-xs text-growth-600 dark:text-growth-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
                 Automatizaciones & CRM AI (Simulador)</button>
             <button onclick="switchView('software'); toggleMobileNav();"
-                class="block w-full text-left px-4 py-2 rounded-xl font-bold text-xs text-electric-600 dark:text-electric-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
+                class="block w-full text-left px-4 py-2 rounded-xl font-bold text-xs text-brand-purple dark:text-electric-400 hover:bg-slate-200/60 dark:hover:bg-white/5 pl-7">↳
                 Software Empresarial a Medida</button>
             <button onclick="toggleMobileNav(); openModal();"
                 class="w-full mt-2 py-3 rounded-xl bg-growth-500 text-deep-950 font-black text-xs text-center shadow-md active:scale-95">
@@ -601,7 +582,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-10">
                         <span
-                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">
                             SIMULADOR DE IMPACTO OPERATIVO</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Calcula cuánto tiempo y ventas recuperas con <span class="text-gradient">NextGrow</span>
@@ -617,7 +598,7 @@
                         <!-- Controls (Columna Izquierda) -->
                         <div class="lg:col-span-7 space-y-6">
 
-                            <!-- 1. Sector Selector -->
+                            <!-- 1. Selector de Industria -->
                             <div>
                                 <label
                                     class="block text-xs font-bold font-mono text-slate-700 dark:text-slate-300 mb-2">
@@ -643,80 +624,121 @@
                                 </div>
                             </div>
 
-                            <!-- 2. Slider Inversión -->
+                            <!-- 2. Slider Inversión (Comienza en $100 USD) -->
                             <div>
                                 <div class="flex justify-between items-center text-xs font-bold mb-2">
                                     <span class="text-slate-700 dark:text-slate-300">2. Inversión estimada mensual en
-                                        anuncios:</span>
+                                        publicidad:</span>
                                     <span id="home-sim-spend-label"
                                         class="text-base font-black font-mono text-electric-600 dark:text-electric-400">$1,500
                                         USD</span>
                                 </div>
-                                <input type="range" id="home-sim-spend" min="300" max="8000" step="100" value="1500"
+                                <input type="range" id="home-sim-spend" min="100" max="8000" step="50" value="1500"
                                     oninput="updateHomeSim()"
                                     class="w-full h-2.5 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-electric-600">
                                 <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
-                                    <span>$300 USD (Inicial)</span>
-                                    <span>$4,000 USD (Escala)</span>
+                                    <span>$100 USD (Inicial)</span>
+                                    <span>$3,000 USD (Escala)</span>
                                     <span>$8,000+ USD (Alto Volumen)</span>
                                 </div>
                             </div>
 
-                            <!-- 3. Checklist Quick Diagnostic (REACTIVO) -->
-                            <div
-                                class="p-4 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/10">
+                            <!-- 3. Problemas Reales Destacados (Formato Tarjetas Visuales) -->
+                            <div>
                                 <span
-                                    class="text-[11px] font-bold font-mono text-slate-700 dark:text-slate-300 block mb-2">
-                                    3. Marca los problemas que frenan tu negocio hoy:
+                                    class="block text-xs font-bold font-mono text-slate-700 dark:text-slate-300 mb-2.5">
+                                    3. Marca los problemas que frenan tus ventas hoy:
                                 </span>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+
+                                    <!-- Problema 1: Curiosos -->
                                     <label
-                                        class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" id="cb-traffic" checked onchange="updateHomeSim()"
-                                            class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Tráfico llega pero no compra</span>
-                                    </label>
-                                    <label
-                                        class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
+                                        class="relative flex items-start gap-3 p-3.5 rounded-2xl border transition-all cursor-pointer bg-white dark:bg-white/[0.04] border-purple-200/80 dark:border-white/10 hover:border-electric-500 shadow-sm group">
                                         <input type="checkbox" id="cb-curious" checked onchange="updateHomeSim()"
-                                            class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Curiosos saturando WhatsApp</span>
+                                            class="mt-1 w-4 h-4 rounded text-electric-600 focus:ring-electric-500 accent-electric-600 shrink-0 cursor-pointer">
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-slate-900 dark:text-white block group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                                💬 Curiosos que solo preguntan precio
+                                            </span>
+                                            <span
+                                                class="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-tight">
+                                                Piden información y luego no vuelven a contestar.
+                                            </span>
+                                        </div>
                                     </label>
+
+                                    <!-- Problema 2: Anuncios sin ventas -->
                                     <label
-                                        class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
+                                        class="relative flex items-start gap-3 p-3.5 rounded-2xl border transition-all cursor-pointer bg-white dark:bg-white/[0.04] border-purple-200/80 dark:border-white/10 hover:border-electric-500 shadow-sm group">
+                                        <input type="checkbox" id="cb-traffic" checked onchange="updateHomeSim()"
+                                            class="mt-1 w-4 h-4 rounded text-electric-600 focus:ring-electric-500 accent-electric-600 shrink-0 cursor-pointer">
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-slate-900 dark:text-white block group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                                📢 La publicidad no genera clientes reales
+                                            </span>
+                                            <span
+                                                class="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-tight">
+                                                Se gasta presupuesto pero no se ven ingresos claros.
+                                            </span>
+                                        </div>
+                                    </label>
+
+                                    <!-- Problema 3: Página web no vende -->
+                                    <label
+                                        class="relative flex items-start gap-3 p-3.5 rounded-2xl border transition-all cursor-pointer bg-white dark:bg-white/[0.04] border-purple-200/80 dark:border-white/10 hover:border-electric-500 shadow-sm group">
                                         <input type="checkbox" id="cb-slowweb" onchange="updateHomeSim()"
-                                            class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Web lenta o sin embudo CRO</span>
+                                            class="mt-1 w-4 h-4 rounded text-electric-600 focus:ring-electric-500 accent-electric-600 shrink-0 cursor-pointer">
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-slate-900 dark:text-white block group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                                🌐 Página web que nadie usa para comprar
+                                            </span>
+                                            <span
+                                                class="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-tight">
+                                                La gente entra, se aburre rápido y se sale sin escribir.
+                                            </span>
+                                        </div>
                                     </label>
+
+                                    <!-- Problema 4: Pérdida de tiempo manual -->
                                     <label
-                                        class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300">
-                                        <input type="checkbox" id="cb-roas" onchange="updateHomeSim()"
-                                            class="rounded text-electric-600 focus:ring-electric-500 accent-electric-600 home-diag-cb">
-                                        <span>Sin atribución de ROAS real</span>
+                                        class="relative flex items-start gap-3 p-3.5 rounded-2xl border transition-all cursor-pointer bg-white dark:bg-white/[0.04] border-purple-200/80 dark:border-white/10 hover:border-electric-500 shadow-sm group">
+                                        <input type="checkbox" id="cb-manual" onchange="updateHomeSim()"
+                                            class="mt-1 w-4 h-4 rounded text-electric-600 focus:ring-electric-500 accent-electric-600 shrink-0 cursor-pointer">
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-slate-900 dark:text-white block group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                                ⏳ Todo el seguimiento se hace a mano
+                                            </span>
+                                            <span
+                                                class="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-tight">
+                                                Escribiendo lo mismo todo el día y perdiendo prospectos.
+                                            </span>
+                                        </div>
                                     </label>
+
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- Projection Display Box (Columna Derecha Potenciada) -->
+                        <!-- Projection Display Box (Columna Derecha) -->
                         <div
                             class="lg:col-span-5 p-6 rounded-3xl bg-slate-900 text-white border border-purple-500/20 shadow-2xl relative overflow-hidden text-center space-y-4">
 
-                            <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">DIAGNÓSTICO
-                                    TÉCNICO</span>
-                                <span id="home-sim-status-badge"
-                                    class="px-2.5 py-0.5 rounded-full bg-growth-500/20 text-growth-400 border border-growth-500/30 text-[10px] font-mono font-bold uppercase">
-                                    SISTEMA EN PILOTO AUTOMÁTICO
+                            <div class="border-b border-white/10 pb-3 text-left">
+                                <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
+                                    DIAGNÓSTICO COMERCIAL ESTIMADO
                                 </span>
                             </div>
 
                             <!-- Mensaje Dinámico -->
                             <div class="space-y-1.5 py-1">
-                                <span
-                                    class="text-[10px] text-slate-400 font-mono uppercase tracking-widest block">TRANSFORMACIÓN
-                                    ESTIMADA</span>
+                                <span class="text-[10px] text-slate-400 font-mono uppercase tracking-widest block">
+                                    RESULTADO ESTIMADO
+                                </span>
                                 <p id="home-sim-impact-title"
                                     class="text-xl sm:text-2xl font-black text-growth-400 tracking-tight leading-snug">
                                     Menos chats vacíos,<br>más ventas cerradas
@@ -735,7 +757,7 @@
                                         AUTOMÁTICO</span>
                                     <span id="home-sim-junk-filtered"
                                         class="text-base font-bold font-mono text-growth-400 block mt-0.5">330
-                                        chats</span>
+                                        chats/mes</span>
                                     <span class="text-[9px] text-slate-400 block">Curiosos fuera de tu tiempo</span>
                                 </div>
                                 <div class="p-3 rounded-2xl bg-white/[0.06] border border-white/10">
@@ -747,18 +769,17 @@
                                 </div>
                             </div>
 
-                            <!-- Indicador de Fugas Detectadas -->
+                            <!-- Indicador de Problemas Detectados -->
                             <div
                                 class="p-2.5 rounded-xl bg-purple-950/50 border border-purple-500/30 text-[10px] font-mono text-purple-200 flex items-center justify-between">
-                                <span>FUGAS DETECTADAS:</span>
-                                <span id="home-sim-leak-count" class="font-bold text-rose-400">2 problemas
-                                    seleccionados</span>
+                                <span>PUNTOS CRÍTICOS DETECTADOS:</span>
+                                <span id="home-sim-leak-count" class="font-bold text-rose-400">2 seleccionados</span>
                             </div>
 
                             <div class="pt-1">
                                 <button onclick="openModal()" id="home-sim-cta-btn"
                                     class="w-full py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs transition shadow-lg shadow-growth-500/20 active:scale-95 flex items-center justify-center gap-1.5">
-                                    <span>Eliminar estas fugas en mi negocio</span>
+                                    <span>Resolver estos problemas en mi negocio</span>
                                     <span>➔</span>
                                 </button>
                             </div>
@@ -778,12 +799,11 @@
                     <div class="text-center max-w-3xl mx-auto mb-12 space-y-2">
                         <span
                             class="text-xs font-mono text-rose-500 uppercase tracking-widest font-extrabold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20">
-                            🚨 AUDITORÍA DE FUGAS CRÍTICAS
+                            🚨 BIENVENIDO A LA AUDITORÍA DE FUGAS CRÍTICAS
                         </span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white pt-2">
-                            ¿A dónde se está <span
-                                class="text-rose-500 underline decoration-rose-500/30 underline-offset-8">tirando a la
-                                basura</span> tu dinero hoy?
+                            ¿Por qué se está <span
+                                class="text-rose-500 underline decoration-rose-500/30 underline-offset-8">yendo a la basura</span> tu dinero hoy?
                         </h2>
                         <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm pt-1 max-w-xl mx-auto">
                             No es que no vendas. Es que estás pagando por tráfico que entra, satura a tu equipo y se va
@@ -918,7 +938,8 @@
 
                     <!-- Botón CTA con tono de urgencia -->
                     <div class="text-center mt-12">
-                        <button onclick="openModal()" class="glow-purple px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-purple-600 to-electric-600 hover:scale-105 text-slate-900 dark:text-white text-xs sm:text-sm font-black transition-all shadow-xl active:scale-95">
+                        <button onclick="openModal()"
+                            class="glow-purple px-8 py-4 rounded-2xl bg-gradient-to-r from-rose-600 via-purple-600 to-electric-600 hover:scale-105 text-slate-900 dark:text-white text-xs sm:text-sm font-black transition-all shadow-xl active:scale-95">
                             🔥 FRENAR EL DESPERDICIO DE DINERO EN MI EMPRESA →
                         </button>
                         <p class="text-[10px] font-mono text-slate-400 mt-2">
@@ -934,7 +955,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-14">
                         <span
-                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">
                             MÉTRICAS VERIFICADAS</span>
                         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             - RESULTADOS DE NUESTROS CLIENTES -
@@ -979,7 +1000,7 @@
                         <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
                             <div>
                                 <span
-                                    class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                                    class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                                     RECURSOS Y ESTRATEGIA</span>
                                 <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">Videos
                                     para mis clientes</h3>
@@ -1057,7 +1078,7 @@
                     <div class="mt-20">
                         <div class="text-center max-w-2xl mx-auto mb-10">
                             <span
-                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                                 EXPERIENCIAS REALES</span>
                             <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">- ¿QUÉ DICEN
                                 LOS QUE YA CRECIERON? -</h3>
@@ -1120,7 +1141,7 @@
                     <div class="mt-20 max-w-3xl mx-auto">
                         <div class="text-center mb-10">
                             <span
-                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                                 DUDAS FRECUENTES</span>
                             <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">- PREGUNTAS
                                 FRECUENTES -</h3>
@@ -1230,10 +1251,36 @@
                         </p>
                     </div>
 
-                    <!-- 3 Gorgeous Cards Leading to Specialized Views -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <!-- 4 Tarjetas de Servicios Integrados -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
 
-                        <!-- Option 1: Desarrollo Web -->
+                        <!-- Opción 1: Publicidad Digital (DESTACADO / MÁS IMPORTANTE) -->
+                        <div onclick="switchView('publicidad-digital')"
+                            class="p-6 rounded-3xl glass-panel border-2 border-electric-500 cursor-pointer relative group overflow-hidden bg-gradient-to-b from-purple-600/15 via-purple-500/5 to-transparent hover:scale-[1.03] transition-all shadow-2xl shadow-electric-600/20">
+                            <div class="flex items-center justify-between mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-2xl bg-electric-600 text-white flex items-center justify-center text-2xl font-bold shadow-lg shadow-electric-600/30">
+                                    🚀
+                                </div>
+                                <span
+                                    class="text-[10px] font-mono font-black px-2.5 py-1 rounded-full bg-electric-600 text-white border border-electric-400 animate-pulse tracking-wider">
+                                    MÁS SOLICITADO ★
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 dark:text-white">Publicidad Digital (Meta &
+                                Google)</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                                Campañas de alta intención para Meta & Google Ads enfocadas en traer clientes reales, no
+                                clics vacíos.
+                            </p>
+                            <div
+                                class="mt-4 pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs font-black text-electric-600 dark:text-electric-400">
+                                <span>Ver estrategia Ads</span>
+                                <span>➔</span>
+                            </div>
+                        </div>
+
+                        <!-- Opción 2: Desarrollo Web -->
                         <div onclick="switchView('desarrollo-web')"
                             class="p-6 rounded-3xl glass-panel border border-electric-500/40 cursor-pointer relative group overflow-hidden bg-gradient-to-b from-purple-500/10 to-transparent hover:scale-[1.02] transition-all shadow-xl">
                             <div class="flex items-center justify-between mb-4">
@@ -1258,7 +1305,7 @@
                             </div>
                         </div>
 
-                        <!-- Option 2: Automatización AI (DEDICATED COMMAND CENTER) -->
+                        <!-- Opción 3: Automatización AI -->
                         <div onclick="switchView('automatizaciones')"
                             class="p-6 rounded-3xl glass-panel border border-growth-500/40 cursor-pointer relative group overflow-hidden bg-gradient-to-b from-growth-500/10 to-transparent hover:scale-[1.02] transition-all shadow-xl">
                             <div class="flex items-center justify-between mb-4">
@@ -1284,7 +1331,7 @@
                             </div>
                         </div>
 
-                        <!-- Option 3: Software Empresarial -->
+                        <!-- Opción 4: Software Empresarial -->
                         <div onclick="switchView('software')"
                             class="p-6 rounded-3xl glass-panel border border-electric-500/40 cursor-pointer relative group overflow-hidden bg-gradient-to-b from-purple-500/10 to-transparent hover:scale-[1.02] transition-all shadow-xl">
                             <div class="flex items-center justify-between mb-4">
@@ -1376,7 +1423,7 @@
                         class="p-6 sm:p-10 rounded-3xl bg-slate-900 text-white border border-purple-500/20 shadow-2xl relative overflow-hidden mb-12">
 
                         <div class="text-center max-w-2xl mx-auto mb-8">
-                            <span class="text-xs font-mono text-growth-400 uppercase tracking-widest font-bold">//
+                            <span class="text-xs font-mono text-growth-400 uppercase tracking-widest font-bold">
                                 SIMULADOR INTERACTIVO 02</span>
                             <h3 class="text-2xl sm:text-3xl font-black mt-1">
                                 Configurador de Ecosistema Integrado 360°
@@ -1599,7 +1646,7 @@
                     <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
                         <div class="text-left space-y-1">
                             <span
-                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                                 BASE DE CONOCIMIENTO</span>
                             <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white">
                                 Contenido que te ayuda a vender más
@@ -1649,7 +1696,7 @@
                         class="p-6 sm:p-8 rounded-3xl glass-panel border border-growth-500/30 flex flex-col md:flex-row items-center justify-between gap-6 my-12">
                         <div class="space-y-2 text-left">
                             <span
-                                class="text-[10px] font-mono font-bold text-growth-600 dark:text-growth-400 uppercase tracking-widest">//
+                                class="text-[10px] font-mono font-bold text-growth-600 dark:text-growth-400 uppercase tracking-widest">
                                 ESTIMADOR DE IMPLEMENTACIÓN</span>
                             <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">¿Cuánto tiempo te
                                 tomaría lanzar tu primer bot en WhatsApp?</h3>
@@ -1761,13 +1808,13 @@
                 class="pt-12 pb-16 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden mesh-grid">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                    <div class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
-                        <button onclick="switchView('servicios')"
-                            class="hover:text-electric-600 dark:hover:text-white transition flex items-center gap-1 font-bold">
-                            ← Volver a Servicios
+                    <div class="flex items-center gap-3 text-sm font-mono mb-8">
+                        <button onclick="switchView('servicios')" class="btn-back-services group">
+                            <span class="text-base group-hover:-translate-x-1 transition-transform">←</span>
+                            <span>Volver a Servicios</span>
                         </button>
-                        <span>/</span>
-                        <span class="text-growth-600 dark:text-growth-400">Desarrollo Web & Embudos</span>
+                        <span class="text-slate-400">/</span>
+                        <span class="text-brand-purple dark:text-growth-400 font-bold">Desarrollo Web & Embudos</span>
                     </div>
 
                     <div class="text-center max-w-3xl mx-auto space-y-4">
@@ -1833,7 +1880,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-10">
                         <span
-                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                             SIMULADOR INTERACTIVO 03</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Compara el impacto de una <span class="text-gradient">Web de Alta Conversión</span>
@@ -2020,38 +2067,44 @@
         <div id="view-automatizaciones" class="hidden transition-opacity duration-300">
 
             <section
-                class="pt-10 pb-14 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden bg-slate-900 text-white">
+                class="pt-8 pb-14 md:pt-10 md:pb-16 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden bg-slate-900 text-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                    <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+                    <!-- Miga de Pan & Volver a Servicios (Legible en Claro y Oscuro) -->
+                    <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm font-mono mb-8">
                         <button onclick="switchView('servicios')"
-                            class="hover:text-growth-400 transition flex items-center gap-1 font-bold">
-                            ← Volver a Servicios
+                            class="btn-back-services !bg-white/10 !text-white hover:!bg-white/20 !border-white/20 group">
+                            <span class="text-base group-hover:-translate-x-1 transition-transform">←</span>
+                            <span>Volver a Servicios</span>
                         </button>
-                        <span>/</span>
-                        <span class="text-growth-400 font-bold">Automatización IA & CRM (Command Center)</span>
+                        <span class="text-slate-500">/</span>
+                        <span
+                            class="text-purple-300 dark:text-growth-400 font-bold truncate max-w-[220px] sm:max-w-none">
+                            Automatización IA & CRM (Command Center)
+                        </span>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-                        <div class="lg:col-span-6 space-y-4">
+                        <div class="lg:col-span-6 space-y-4 text-center lg:text-left">
                             <div
                                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-growth-500/10 border border-growth-500/30 text-growth-400 text-xs font-mono font-bold">
                                 <span class="w-2 h-2 rounded-full bg-growth-400 animate-ping"></span>
                                 MOTOR AUTÓNOMO 24/7
                             </div>
 
-                            <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                            <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
                                 Tu negocio sigue funcionando con personas en vez de <span
                                     class="text-growth-400">funcionar con sistemas.</span>
                             </h1>
 
-                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto lg:mx-0">
                                 Cada proceso manual que haces hoy es dinero que pierdes mañana. Automatizamos los flujos
                                 críticos para que dupliques clientes sin aumentar nómina.
                             </p>
 
-                            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
+                            <div
+                                class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3 text-left max-w-xl mx-auto lg:mx-0">
                                 <div
                                     class="w-10 h-10 rounded-xl bg-growth-500/20 text-growth-400 flex items-center justify-center font-mono font-black text-sm shrink-0">
                                     18h</div>
@@ -2061,7 +2114,8 @@
                                 </p>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                            <div
+                                class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
                                 <button onclick="openModal()"
                                     class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs sm:text-sm tracking-wide shadow-xl active:scale-95 transition">
                                     Quiero automatizar mi negocio
@@ -2128,7 +2182,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
                         <span
-                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                             QUÉ HACEMOS EXACTAMENTE</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Convertimos procesos manuales en <span class="text-gradient">flujos que se ejecutan
@@ -2211,9 +2265,9 @@
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div class="text-center max-w-2xl mx-auto mb-10">
-                        <span class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase font-bold">//
+                        <span class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase font-bold">
                             CALCULADORA DE DESPERDICIO MANUAL</span>
-                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">
+                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             ¿Cuánto dinero y tiempo pierde tu equipo hoy?
                         </h2>
                         <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
@@ -2275,7 +2329,7 @@
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
-                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                             SUITE COMPLETA</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Seis sistemas que transforman cómo opera tu negocio
@@ -2470,7 +2524,7 @@
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div class="text-center mb-12">
-                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                             METODOLOGÍA ÁGIL</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             De cero a sistema funcionando en <span class="text-gradient">menos de 30 días</span>
@@ -2585,13 +2639,13 @@
                 class="pt-10 pb-16 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden mesh-grid">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-                    <div class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
-                        <button onclick="switchView('servicios')"
-                            class="hover:text-electric-600 dark:hover:text-white transition flex items-center gap-1 font-bold">
-                            ← Volver a Servicios
+                    <div class="flex items-center gap-3 text-sm font-mono mb-8">
+                        <button onclick="switchView('servicios')" class="btn-back-services group">
+                            <span class="text-base group-hover:-translate-x-1 transition-transform">←</span>
+                            <span>Volver a Servicios</span>
                         </button>
-                        <span>/</span>
-                        <span class="text-growth-600 dark:text-growth-400 font-bold">Software Empresarial a
+                        <span class="text-slate-400">/</span>
+                        <span class="text-brand-purple dark:text-growth-400 font-bold">Software Empresarial a
                             Medida</span>
                     </div>
 
@@ -2728,7 +2782,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-10">
                         <span
-                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">
                             SIMULADOR INTERACTIVO 04</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Configura tu <span class="text-gradient">Arquitectura a Medida</span>
@@ -2860,7 +2914,7 @@
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
-                        <span class="text-xs font-mono text-rose-500 uppercase tracking-widest font-bold">// EL CAOS
+                        <span class="text-xs font-mono text-rose-500 uppercase tracking-widest font-bold"> EL CAOS
                             OPERATIVO QUE FRENA TU CRECIMIENTO</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             No es falta de esfuerzo. <span class="text-gradient">Es falta de infraestructura.</span>
@@ -2970,7 +3024,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
                         <span
-                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                             LO QUE CONSTRUIMOS</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             Software hecho exactamente para <span class="text-gradient">como opera tu negocio</span>
@@ -3148,7 +3202,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
                         <span
-                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">
                             SOFTWARE GENÉRICO VS A MEDIDA</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             ¿Por qué no simplemente usar una app que ya existe?
@@ -3264,7 +3318,7 @@
 
                     <div class="text-center max-w-2xl mx-auto mb-12">
                         <span
-                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">//
+                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
                             PROCESO DE DESARROLLO</span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
                             De la idea al sistema funcionando <span class="text-growth-600 dark:text-growth-400">en
@@ -3324,7 +3378,7 @@
 
                         <div class="md:col-span-6 space-y-3">
                             <span
-                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                                class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                                 ESTÁNDARES TÉCNICOS</span>
                             <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Construido para
                                 durar, escalar y no fallar</h3>
@@ -3380,7 +3434,7 @@
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     <div class="text-center max-w-2xl mx-auto mb-10">
-                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">//
+                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
                             FILTRO DE CALIFICACIÓN</span>
                         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">
                             Para negocios que ya operan y necesitan <span class="text-gradient">infraestructura
@@ -3438,6 +3492,142 @@
                         </button>
                     </div>
 
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 7: PUBLICIDAD DIGITAL (MODO CLARO/OSCURO Y MÓVIL CORREGIDO) -->
+        <!-- ============================================================= -->
+        <div id="view-publicidad-digital" class="hidden transition-opacity duration-300">
+
+            <section
+                class="pt-8 pb-16 md:pt-12 md:pb-20 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden mesh-grid">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                    <!-- Miga de Pan / Volver a Servicios (MÓVIL Y DESKTOP CON ALTO CONTRASTE) -->
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono mb-8">
+                        <button onclick="switchView('servicios')" class="btn-back-services group">
+                            <span class="text-base group-hover:-translate-x-1 transition-transform">←</span>
+                            <span>Volver a Servicios</span>
+                        </button>
+                        <span class="text-slate-400 dark:text-slate-600">/</span>
+                        <span
+                            class="text-brand-purple dark:text-growth-400 font-bold truncate max-w-[200px] sm:max-w-none">
+                            Publicidad Digital (Meta & Google Ads)
+                        </span>
+                    </div>
+
+                    <!-- Hero de Sección -->
+                    <div class="text-center max-w-4xl mx-auto space-y-5">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-white/[0.08] border border-purple-200 dark:border-white/15 text-brand-purple dark:text-growth-400 text-xs font-mono font-black uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-growth-500 animate-ping"></span>
+                            PUBLICIDAD DIGITAL HIGH-INTENT
+                        </div>
+
+                        <h1
+                            class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                            Deja de pagar por clics.<br>
+                            <span class="text-gradient">Empieza a pagar por clientes.</span>
+                        </h1>
+
+                        <p
+                            class="text-slate-600 dark:text-slate-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
+                            Meta Ads y Google Ads bien ejecutados no son un gasto: son la máquina de adquisición
+                            comercial más predecible que puede tener tu negocio.
+                        </p>
+
+                        <!-- Botón CTA Principal -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                            <button onclick="openModal()"
+                                class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-growth-500 to-growth-600 hover:from-growth-400 hover:to-growth-500 text-deep-950 font-black text-xs sm:text-sm tracking-wide shadow-xl shadow-growth-500/25 active:scale-95 transition">
+                                ¡Quiero mi diagnóstico publicitario gratis! →
+                            </button>
+                        </div>
+
+                        <!-- 3 Badges de Métricas (Totalmente visibles en Modo Oscuro) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 max-w-3xl mx-auto">
+                            <div class="metric-badge-ads border-growth-500/30 text-growth-600 dark:text-growth-400">
+                                ✓ ROAS Promedio x4.7
+                            </div>
+                            <div
+                                class="metric-badge-ads border-electric-500/30 text-electric-600 dark:text-electric-400">
+                                ✓ -62% Costo por Lead
+                            </div>
+                            <div class="metric-badge-ads">
+                                ✓ Resultados en primeros 7 días
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Estrategia Ads según Estado -->
+            <section
+                class="py-12 md:py-20 bg-slate-100/50 dark:bg-deep-900/40 border-b border-slate-200 dark:border-white/[0.08]">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
+                            ESTRATEGIA A MEDIDA</span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
+                            Adaptado al estado actual de tu empresa
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                        <!-- Estado A -->
+                        <div
+                            class="p-6 sm:p-8 rounded-3xl glass-panel border border-slate-200 dark:border-white/10 space-y-4">
+                            <span
+                                class="px-3 py-1 rounded-full bg-purple-500/10 text-brand-purple dark:text-electric-400 text-xs font-mono font-bold">ESCENARIO
+                                A</span>
+                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">¿Nunca has
+                                invertido en publicidad digital?</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Creamos toda la infraestructura comercial desde cero: configuración de Pixel/API de
+                                Conversiones, diseño de anuncios de alto impacto y lanzamiento de campañas probadas.
+                            </p>
+                            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 pt-2">
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Testeo rápido de audiencias con intención comercial</li>
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Configuración técnica correcta para evitar bloqueos</li>
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Integración directa con tu WhatsApp / CRM</li>
+                            </ul>
+                        </div>
+
+                        <!-- Estado B -->
+                        <div class="p-6 sm:p-8 rounded-3xl glass-panel border border-growth-500/30 space-y-4 shadow-xl">
+                            <span
+                                class="px-3 py-1 rounded-full bg-growth-500/20 text-growth-700 dark:text-growth-400 text-xs font-mono font-bold">ESCENARIO
+                                B</span>
+                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">¿Ya inviertes pero
+                                no estás vendiendo lo suficiente?</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Auditamos tu cuenta actual, identificamos fugas en el embudo y reestructuramos tus
+                                campañas hacia un modelo enfocado 100% en retorno bancario (ROAS).
+                            </p>
+                            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 pt-2">
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Limpieza de audiencias quemadas y curiosos</li>
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Reescritura de copies y nuevos ángulos de oferta</li>
+                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
+                                    Atribución exacta de ventas por canal</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-10 md:mt-12">
+                        <button onclick="openModal()"
+                            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs sm:text-sm shadow-xl active:scale-95 transition">
+                            Auditar mis campañas o lanzar la primera →
+                        </button>
+                    </div>
                 </div>
             </section>
 
