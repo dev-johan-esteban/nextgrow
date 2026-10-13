@@ -230,6 +230,180 @@
             color: #c084fc !important;
             /* Morado claro brillante siempre legible */
         }
+
+
+        /* ==========================================================================
+           EFECTO HOVER DASHBOARD: GRADIENTE EXTERIOR + CRISTAL CLARO CON NÚMEROS NEGROS
+           ========================================================================== */
+        .glass-panel-glow {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .glass-panel-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #a855f7, #10b981, #3b82f6, #a855f7);
+            background-size: 300% 300%;
+            animation: gradientShift 6s linear infinite;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .glass-panel-glow:hover::before {
+            opacity: 1;
+        }
+
+        .glass-panel-glow:hover {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.4) !important;
+        }
+
+        /* 1. Cajitas internas como cristal blanco frosted para contrastar con el fondo multicolor */
+        .glass-panel-glow:hover .inner-box-hover {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-color: rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.12) !important;
+            transition: all 0.4s ease;
+        }
+
+        /* 2. Números gigantes y textos principales en NEGRO INTENSO */
+        .glass-panel-glow:hover .inner-box-hover p,
+        .glass-panel-glow:hover .inner-box-hover .text-slate-900 {
+            color: #0f172a !important;
+            /* Slate 900 / Negro suave para máxima legibilidad */
+            font-weight: 900 !important;
+        }
+
+        /* 3. Etiquetas pequeñas (VENTAS REALES, LEADS) en gris grafito legible */
+        .glass-panel-glow:hover .inner-box-hover .text-slate-500,
+        .glass-panel-glow:hover .inner-box-hover .text-slate-400 {
+            color: #475569 !important;
+            /* Slate 600 */
+            font-weight: 700 !important;
+        }
+
+        /* 4. Porcentajes en verde esmeralda vibrante */
+        .glass-panel-glow:hover .text-growth-600,
+        .glass-panel-glow:hover .text-growth-400 {
+            color: #059669 !important;
+            /* Emerald 600 */
+        }
+
+        /* 5. Cabecera superior que queda directo sobre el degradado exterior (se mantiene blanca) */
+        .glass-panel-glow:hover>div>div>span,
+        .glass-panel-glow:hover .text-slate-500:not(.inner-box-hover *) {
+            color: #ffffff !important;
+        }
+
+        /* 6. Mantener colores originales de los círculos superiores */
+        .glass-panel-glow:hover .bg-rose-500 {
+            background-color: #f43f5e !important;
+        }
+
+        .glass-panel-glow:hover .bg-amber-500 {
+            background-color: #f59e0b !important;
+        }
+
+        .glass-panel-glow:hover .bg-emerald-500 {
+            background-color: #10b981 !important;
+        }
+
+        .glass-panel-glow:hover .bg-growth-500 {
+            background-color: #10b981 !important;
+        }
+
+        /* ==========================================================================
+           ANIMACIÓN Y RECORRIDO DEL CURSOR IA (MOVIMIENTO FLUIDO Y CLICS)
+           ========================================================================== */
+        @keyframes fakeCursorMove {
+            0% {
+                opacity: 0;
+                transform: translate(50px, 20px) scale(1);
+            }
+
+            8% {
+                opacity: 1;
+                transform: translate(95px, 95px) scale(1);
+                /* Llega a 'Ventas Reales' */
+            }
+
+            14% {
+                transform: translate(95px, 95px) scale(0.85);
+                /* Clic */
+            }
+
+            18% {
+                transform: translate(95px, 95px) scale(1);
+            }
+
+            32% {
+                transform: translate(250px, 95px) scale(1);
+                /* Llega a 'Leads Compradores' */
+            }
+
+            38% {
+                transform: translate(250px, 95px) scale(0.85);
+                /* Clic */
+            }
+
+            42% {
+                transform: translate(250px, 95px) scale(1);
+            }
+
+            58% {
+                transform: translate(370px, 210px) scale(1);
+                /* Baja al pico de la gráfica */
+            }
+
+            64% {
+                transform: translate(370px, 210px) scale(0.85);
+                /* Clic */
+            }
+
+            68% {
+                transform: translate(370px, 210px) scale(1);
+            }
+
+            80% {
+                transform: translate(170px, 320px) scale(1);
+                /* Baja a 'Bot WhatsApp' */
+            }
+
+            85% {
+                transform: translate(170px, 320px) scale(0.85);
+                /* Clic */
+            }
+
+            90% {
+                opacity: 1;
+                transform: translate(170px, 320px) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(50px, 20px) scale(1);
+                /* Vuelve al inicio y reinicia */
+            }
+        }
+
+        .simulated-cursor {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 50 !important;
+            pointer-events: none !important;
+            animation: fakeCursorMove 8.5s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+            will-change: transform, opacity;
+        }
     </style>
 </head>
 
@@ -453,8 +627,9 @@
                                             d="M13.64 21.97C13.14 22.21 12.54 22 12.31 21.5L10.13 16.7L6.87 19.95C6.46 20.36 5.75 20.07 5.75 19.5V3.5C5.75 2.93 6.46 2.64 6.87 3.05L18.9 15.08C19.31 15.49 19.02 16.2 18.45 16.2H14.1L16.28 21C16.5 21.5 16.28 22.1 15.78 22.33L13.64 21.97Z" />
                                     </svg>
                                     <span
-                                        class="bg-electric-600 text-white text-[9px] font-mono px-2 py-0.5 rounded-full shadow-lg font-bold ml-3 -mt-2 inline-block">IA
-                                        Vendiendo...</span>
+                                        class="bg-electric-600 text-white text-[9px] font-mono px-2 py-0.5 rounded-full shadow-lg font-bold ml-3 -mt-2 inline-block border-none">
+                                        IA Vendiendo...
+                                    </span>
                                 </div>
 
                                 <div
@@ -473,7 +648,7 @@
                                                 // live-sales</span>
                                         </div>
                                         <span
-                                            class="text-[10px] font-mono text-growth-600 dark:text-growth-400 bg-growth-500/10 px-2 py-0.5 rounded-full border border-growth-500/20 flex items-center gap-1 font-bold">
+                                            class="inner-box-hover text-[10px] font-mono text-growth-600 dark:text-growth-400 bg-growth-500/10 px-2 py-0.5 rounded-full border border-growth-500/20 flex items-center gap-1 font-bold">
                                             <span class="w-1.5 h-1.5 rounded-full bg-growth-500 animate-ping"></span>
                                             SISTEMA ACTIVO
                                         </span>
@@ -481,7 +656,7 @@
 
                                     <div class="grid grid-cols-3 gap-3 mb-5">
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
+                                            class="inner-box-hover p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">VENTAS
                                                 REALES</span>
                                             <p class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5"
@@ -491,7 +666,7 @@
                                                 +38.6%</span>
                                         </div>
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
+                                            class="inner-box-hover p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">LEADS
                                                 COMPRADORES</span>
                                             <p class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-0.5"
@@ -501,7 +676,7 @@
                                                 +45.2%</span>
                                         </div>
                                         <div
-                                            class="p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
+                                            class="inner-box-hover p-3 rounded-2xl bg-purple-50/60 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] transition-all hover:scale-105">
                                             <span class="text-[10px] text-slate-500 font-mono block">RETORNO
                                                 (ROAS)</span>
                                             <p
@@ -514,7 +689,7 @@
                                     </div>
 
                                     <div
-                                        class="p-3 rounded-2xl bg-slate-100/70 dark:bg-deep-950/80 border border-slate-200 dark:border-white/[0.06] mb-4">
+                                        class="inner-box-hover p-3 rounded-2xl bg-slate-100/70 dark:bg-deep-950/80 border border-slate-200 dark:border-white/[0.06] mb-4">
                                         <div class="flex justify-between text-xs font-mono text-slate-500 mb-2">
                                             <span>Curva de Adquisición vs Inversión</span>
                                             <span
@@ -535,7 +710,7 @@
                                     </div>
 
                                     <div
-                                        class="flex items-center justify-between p-3 rounded-xl bg-purple-50/50 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] text-xs">
+                                        class="inner-box-hover flex items-center justify-between p-3 rounded-xl bg-purple-50/50 dark:bg-white/[0.03] border border-purple-100 dark:border-white/[0.05] text-xs">
                                         <div class="flex items-center gap-2.5">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-electric-600/20 text-electric-600 dark:text-electric-400 flex items-center justify-center font-bold">
@@ -548,14 +723,15 @@
                                             </div>
                                         </div>
                                         <span
-                                            class="px-2 py-0.5 rounded bg-growth-500/20 text-growth-700 dark:text-growth-400 border border-growth-500/30 font-bold font-mono text-[10px]">99.8%
-                                            ONLINE</span>
+                                            class="inner-box-hover px-2 py-0.5 rounded bg-growth-500/20 text-growth-700 dark:text-growth-400 border border-growth-500/30 font-bold font-mono text-[10px]">
+                                            99.8% ONLINE
+                                        </span>
                                     </div>
                                 </div>
 
                                 <!-- Notificación emergente de ventas -->
                                 <div
-                                    class="absolute -bottom-5 -left-5 p-3.5 rounded-2xl glass-panel bg-white/95 dark:bg-deep-900/95 border-growth-500/30 shadow-2xl flex items-center gap-3 z-20 animate-float notification-pop">
+                                    class="inner-box-hover absolute -bottom-5 -left-5 p-3.5 rounded-2xl glass-panel bg-white/95 dark:bg-deep-900/95 border-growth-500/30 shadow-2xl flex items-center gap-3 z-20 animate-float notification-pop">
                                     <div
                                         class="w-9 h-9 rounded-xl bg-growth-500/20 border border-growth-500/40 flex items-center justify-center text-growth-600 dark:text-growth-400 font-black text-sm shrink-0">
                                         ✓</div>
@@ -803,7 +979,8 @@
                         </span>
                         <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white pt-2">
                             ¿Por qué se está <span
-                                class="text-rose-500 underline decoration-rose-500/30 underline-offset-8">yendo a la basura</span> tu dinero hoy?
+                                class="text-rose-500 underline decoration-rose-500/30 underline-offset-8">yendo a la
+                                basura</span> tu dinero hoy?
                         </h2>
                         <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm pt-1 max-w-xl mx-auto">
                             No es que no vendas. Es que estás pagando por tráfico que entra, satura a tu equipo y se va
