@@ -990,7 +990,7 @@ function setAdsSimulator(mode) {
 function openModalWithContext(contextTitle) {
     const modal = document.getElementById('diagnostic-modal');
     const selectArea = document.getElementById('lead-area');
-    
+
     // Si existe el selector en el modal, preseleccionamos la pauta
     if (selectArea) {
         // Busca si hay una opción que coincida o déjalo en pauta
@@ -1005,5 +1005,74 @@ function openModalWithContext(contextTitle) {
     if (modal) {
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+    }
+}
+
+// ==========================================
+// SIMULADOR DE EMERGENCIA (LENGUAJE CLARO)
+// ==========================================
+let isBlockedSimulationActive = false;
+
+function triggerBackupDemo() {
+    isBlockedSimulationActive = !isBlockedSimulationActive;
+
+    const btnLabel = document.getElementById('switch-btn-label');
+    
+    // Elementos de la Agencia Común
+    const cardAgency = document.getElementById('card-normal-agency');
+    const badgeAgency = document.getElementById('badge-agency-status');
+    const iconAgency = document.getElementById('icon-agency-result');
+    const titleAgency = document.getElementById('title-agency-result');
+    const descAgency = document.getElementById('desc-agency-result');
+    const metricAgency = document.getElementById('metric-agency-time');
+
+    // Elementos de NextGrow
+    const cardShield = document.getElementById('card-nextgrow-shield');
+    const badgeShield = document.getElementById('badge-shield-status');
+    const titleShield = document.getElementById('title-shield-result');
+    const descShield = document.getElementById('desc-shield-result');
+    const metricShield = document.getElementById('metric-shield-time');
+
+    if (isBlockedSimulationActive) {
+        // ESTADO DE BLOQUEO ACTIVO
+        btnLabel.textContent = "Restaurar estado normal";
+
+        // La agencia común colapsa en rojo
+        cardAgency.className = "p-6 rounded-2xl bg-rose-50 dark:bg-rose-950/20 border-2 border-rose-500 transition-all duration-300 text-left flex flex-col justify-between shadow-lg shadow-rose-500/10";
+        badgeAgency.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-200 text-rose-800 dark:bg-rose-500/30 dark:text-rose-300";
+        badgeAgency.textContent = "CUENTA BLOQUEADA";
+        iconAgency.textContent = "🛑";
+        titleAgency.textContent = "Ventas paralizadas a cero";
+        titleAgency.className = "text-rose-700 dark:text-rose-400 font-bold text-sm";
+        descAgency.textContent = "Los anuncios se apagaron. No entra ni un solo mensaje a WhatsApp y soporte dice que tardan de 2 a 3 semanas en revisar el caso.";
+        metricAgency.innerHTML = "<span class='text-rose-600 font-bold'>+15 días perdiendo plata</span>";
+
+        // NextGrow responde en verde
+        cardShield.className = "p-6 rounded-2xl bg-growth-50 dark:bg-growth-950/30 border-2 border-growth-500 transition-all duration-300 text-left flex flex-col justify-between shadow-xl shadow-growth-500/20";
+        badgeShield.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-growth-200 text-growth-800 dark:bg-growth-500/30 dark:text-growth-300 animate-pulse";
+        badgeShield.textContent = "RESPALDO ENCENDIDO";
+        titleShield.textContent = "Campañas activas en cuenta gemela";
+        descShield.textContent = "El bloqueo ocurrió, pero tu cliente ni se enteró: la cuenta de respaldo tomó los anuncios de inmediato y los prospectos siguieron llegando.";
+        metricShield.innerHTML = "<span class='text-growth-600 dark:text-growth-400 font-bold'>0 ventas perdidas</span>";
+    } else {
+        // ESTADO NORMAL
+        btnLabel.textContent = "Simular que Facebook bloqueó la cuenta";
+
+        // Vuelta a la normalidad
+        cardAgency.className = "p-6 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border-2 border-slate-200 dark:border-white/10 transition-all duration-300 text-left flex flex-col justify-between";
+        badgeAgency.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-slate-300";
+        badgeAgency.textContent = "Una sola cuenta";
+        iconAgency.textContent = "⚠️";
+        titleAgency.textContent = "Dependes de la suerte";
+        titleAgency.className = "text-slate-800 dark:text-slate-200 font-bold text-sm";
+        descAgency.textContent = "Si Meta bloquea la cuenta por error, el negocio se frena. Te dicen que «toca esperar a que soporte responda» mientras tu equipo de ventas pasa días de brazos cruzados.";
+        metricAgency.innerHTML = "7 a 20 días";
+
+        cardShield.className = "p-6 rounded-2xl bg-growth-50/50 dark:bg-growth-500/10 border-2 border-growth-500/40 dark:border-growth-500/30 transition-all duration-300 text-left flex flex-col justify-between shadow-sm";
+        badgeShield.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-growth-100 text-growth-800 dark:bg-growth-500/20 dark:text-growth-300";
+        badgeShield.textContent = "● Planta de respaldo lista";
+        titleShield.textContent = "Tus ventas nunca se apagan";
+        descShield.textContent = "Tenemos una cuenta publicitaria gemela configurada y aprobada. Si la principal se congela, encendemos la de respaldo y tus anuncios siguen rodando sin perder prospectos.";
+        metricShield.innerHTML = "Menos de 30 minutos";
     }
 }
