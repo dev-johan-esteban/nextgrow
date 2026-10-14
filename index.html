@@ -1092,8 +1092,8 @@
                                     class="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-1">
                                     <span>Agencias tradicionales: <strong class="text-rose-500">Métricas de
                                             Likes</strong></span>
-                                    <span>NextGrow: <strong class="text-growth-600 dark:text-growth-400">Plata en el
-                                            banco</strong></span>
+                                    <span>NextGrow: <strong class="text-growth-600 dark:text-growth-400">Ventas
+                                            consistentes</strong></span>
                                 </div>
                                 <div class="w-full bg-slate-200 dark:bg-white/10 h-2 rounded-full overflow-hidden">
                                     <div class="bg-gradient-to-r from-rose-500 via-purple-500 to-growth-400 h-full rounded-full"
@@ -1184,30 +1184,43 @@
                             </div>
                             <span
                                 class="text-xs font-mono text-growth-600 dark:text-growth-400 bg-growth-500/10 px-3.5 py-1.5 rounded-full border border-growth-500/20 font-bold">
-                                ● Masterclasses en vivo
+                                ● Estrategias en video
                             </span>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                            <!-- Tarjeta de Video 1: Con Miniatura Real de YouTube -->
                             <div class="rounded-3xl overflow-hidden glass-panel border border-slate-200 dark:border-white/[0.08] cursor-pointer group"
-                                onclick="showVideo('Embudo predictivo en 24h', 'Aprende la arquitectura de un funnel de alta intención.')">
-                                <div class="relative aspect-video bg-deep-950 flex items-center justify-center">
+                                onclick="showVideo('¿Tus ventas dependen solo de recomendaciones?', 'El peligro de depender únicamente del boca a boca.', '9VJG3eLtAUs')">
+
+                                <div
+                                    class="relative aspect-video bg-deep-950 flex items-center justify-center overflow-hidden">
+                                    <!-- Miniatura directa de YouTube -->
+                                    <img src="https://img.youtube.com/vi/9VJG3eLtAUs/hqdefault.jpg"
+                                        alt="Miniatura video"
+                                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-300">
+
+                                    <!-- Botón de Play flotante sobre la miniatura -->
                                     <div
-                                        class="w-12 h-12 rounded-full bg-electric-600 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        class="relative z-10 w-12 h-12 rounded-full bg-electric-600/90 text-white flex items-center justify-center group-hover:scale-110 shadow-lg shadow-black/50 transition-transform">
                                         <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M8 5v14l11-7z" />
                                         </svg>
                                     </div>
+
+                                    <!-- Duración -->
                                     <span
-                                        class="absolute bottom-2.5 right-2.5 bg-black/80 px-2 py-0.5 rounded text-[10px] text-white font-mono">08:45</span>
+                                        class="absolute bottom-2.5 right-2.5 z-10 bg-black/80 px-2 py-0.5 rounded text-[10px] text-white font-mono">0:23</span>
                                 </div>
+
                                 <div class="p-4">
-                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white">Cómo armar un embudo
-                                        predictivo en 24h</h4>
-                                    <p class="text-[11px] text-slate-500 mt-1">Filtrado de curiosos desde la
-                                        creatividad.</p>
+                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white">¿Tus ventas dependen
+                                        solo de recomendaciones?</h4>
+                                    <p class="text-[11px] text-slate-500 mt-1">El peligro del boca a boca.</p>
                                 </div>
                             </div>
+
 
                             <div class="rounded-3xl overflow-hidden glass-panel border border-slate-200 dark:border-white/[0.08] cursor-pointer group"
                                 onclick="showVideo('Desglose ROAS 8x', 'Auditoría a fondo de métricas de atribución y escala.')">
@@ -3678,133 +3691,426 @@
         <!-- VIEW 7: PUBLICIDAD DIGITAL (MODO CLARO/OSCURO Y MÓVIL CORREGIDO) -->
         <!-- ============================================================= -->
         <div id="view-publicidad-digital" class="hidden transition-opacity duration-300">
-
+            <!-- ============================================================= -->
+            <!-- HERO PUBLICIDAD DIGITAL: REDISEÑO VISUAL Y ALTO CONTRASTE     -->
+            <!-- ============================================================= -->
             <section
-                class="pt-8 pb-16 md:pt-12 md:pb-20 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden mesh-grid">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                class="pt-8 pb-16 md:pt-14 md:pb-24 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden mesh-grid">
 
-                    <!-- Miga de Pan / Volver a Servicios (MÓVIL Y DESKTOP CON ALTO CONTRASTE) -->
-                    <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono mb-8">
+                <!-- Destellos ambientales (Aumentados para modo claro) -->
+                <div
+                    class="absolute top-10 right-1/4 w-96 h-96 bg-purple-500/20 dark:bg-purple-600/15 rounded-full blur-[100px] pointer-events-none">
+                </div>
+                <div
+                    class="absolute bottom-10 left-10 w-96 h-96 bg-growth-500/20 dark:bg-growth-500/15 rounded-full blur-[100px] pointer-events-none">
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                    <!-- Miga de Pan -->
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-mono mb-8 md:mb-12">
                         <button onclick="switchView('servicios')" class="btn-back-services group">
                             <span class="text-base group-hover:-translate-x-1 transition-transform">←</span>
                             <span>Volver a Servicios</span>
                         </button>
-                        <span class="text-slate-400 dark:text-slate-600">/</span>
-                        <span
-                            class="text-brand-purple dark:text-growth-400 font-bold truncate max-w-[200px] sm:max-w-none">
+                        <span class="text-slate-400">/</span>
+                        <span class="text-electric-600 dark:text-electric-400 font-bold truncate">
                             Publicidad Digital (Meta & Google Ads)
                         </span>
                     </div>
 
-                    <!-- Hero de Sección -->
-                    <div class="text-center max-w-4xl mx-auto space-y-5">
-                        <div
-                            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-white/[0.08] border border-purple-200 dark:border-white/15 text-brand-purple dark:text-growth-400 text-xs font-mono font-black uppercase tracking-wider">
-                            <span class="w-2 h-2 rounded-full bg-growth-500 animate-ping"></span>
-                            PUBLICIDAD DIGITAL HIGH-INTENT
-                        </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
-                        <h1
-                            class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
-                            Deja de pagar por clics.<br>
-                            <span class="text-gradient">Empieza a pagar por clientes.</span>
-                        </h1>
+                        <!-- COLUMNA IZQUIERDA: MENOS TEXTO, MÁS VISUAL -->
+                        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
 
-                        <p
-                            class="text-slate-600 dark:text-slate-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
-                            Meta Ads y Google Ads bien ejecutados no son un gasto: son la máquina de adquisición
-                            comercial más predecible que puede tener tu negocio.
-                        </p>
-
-                        <!-- Botón CTA Principal -->
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                            <button onclick="openModal()"
-                                class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-growth-500 to-growth-600 hover:from-growth-400 hover:to-growth-500 text-deep-950 font-black text-xs sm:text-sm tracking-wide shadow-xl shadow-growth-500/25 active:scale-95 transition">
-                                ¡Quiero mi diagnóstico publicitario gratis! →
-                            </button>
-                        </div>
-
-                        <!-- 3 Badges de Métricas (Totalmente visibles en Modo Oscuro) -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 max-w-3xl mx-auto">
-                            <div class="metric-badge-ads border-growth-500/30 text-growth-600 dark:text-growth-400">
-                                ✓ ROAS Promedio x4.7
-                            </div>
                             <div
-                                class="metric-badge-ads border-electric-500/30 text-electric-600 dark:text-electric-400">
-                                ✓ -62% Costo por Lead
+                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/20 text-rose-600 dark:text-rose-400 text-[10px] sm:text-xs font-mono font-bold tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                                // LA TRAMPA DEL BOCA A BOCA
                             </div>
-                            <div class="metric-badge-ads">
-                                ✓ Resultados en primeros 7 días
+
+                            <h1
+                                class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.05]">
+                                Vivir de recomendaciones no es un negocio.<br>
+                                <span class="text-gradient">Es cruzar los dedos.</span>
+                            </h1>
+
+                            <!-- COMPARATIVA VISUAL (Gráficos en lugar de texto aburrido) -->
+                            <div class="grid grid-cols-2 gap-4 pt-4 max-w-lg mx-auto lg:mx-0">
+
+                                <!-- Tarjeta 1: El Dolor -->
+                                <div
+                                    class="p-4 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 shadow-sm text-left relative overflow-hidden">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                                        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Sin
+                                            Publicidad</span>
+                                    </div>
+                                    <p class="text-sm font-black text-slate-900 dark:text-white leading-tight mb-3">
+                                        Flujo inestable<br>y azaroso</p>
+                                    <!-- Gráfico de montaña rusa -->
+                                    <div class="h-10 w-full flex items-end">
+                                        <svg viewBox="0 0 100 40" class="w-full h-full overflow-visible"
+                                            preserveAspectRatio="none">
+                                            <path d="M0,30 L20,10 L40,35 L60,5 L80,25 L100,15" fill="none"
+                                                stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,4" />
+                                            <circle cx="100" cy="15" r="3" fill="#f43f5e" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Tarjeta 2: La Solución -->
+                                <div
+                                    class="p-4 rounded-2xl bg-gradient-to-b from-white to-growth-50/50 dark:from-white/[0.05] dark:to-growth-900/20 border border-growth-200 dark:border-growth-500/20 shadow-sm text-left relative overflow-hidden">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="w-2 h-2 rounded-full bg-growth-500"></span>
+                                        <span
+                                            class="text-[10px] font-bold text-growth-600 dark:text-growth-400 uppercase tracking-wider">Con
+                                            NextGrow</span>
+                                    </div>
+                                    <p class="text-sm font-black text-slate-900 dark:text-white leading-tight mb-3">
+                                        Adquisición<br>matemática</p>
+                                    <!-- Gráfico de crecimiento predecible -->
+                                    <div class="h-10 w-full flex items-end">
+                                        <svg viewBox="0 0 100 40" class="w-full h-full overflow-visible"
+                                            preserveAspectRatio="none">
+                                            <path d="M0,35 Q30,30 50,20 T100,5" fill="none" stroke="#10b981"
+                                                stroke-width="3" stroke-linecap="round" />
+                                            <circle cx="100" cy="5" r="4" fill="#10b981" stroke="#ffffff"
+                                                stroke-width="2" class="dark:stroke-slate-900" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div
+                                class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                <button onclick="openModal()"
+                                    class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-growth-500 to-growth-600 hover:from-growth-400 hover:to-growth-500 text-deep-950 font-black text-sm tracking-wide shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.4)] active:scale-95 transition-all">
+                                    Quiero clientes predecibles →
+                                </button>
                             </div>
                         </div>
-                    </div>
 
+                        <!-- COLUMNA DERECHA: SIMULADOR (AHORA RESALTA BRUTAL EN MODO CLARO) -->
+                        <div class="lg:col-span-6 relative">
+
+                            <!-- Borde luminoso trasero para resaltar en modo claro -->
+                            <div
+                                class="absolute -inset-1 bg-gradient-to-tr from-electric-400 to-growth-400 rounded-[2.5rem] blur-xl opacity-30 dark:opacity-20 pointer-events-none">
+                            </div>
+
+                            <div
+                                class="w-full max-w-md mx-auto rounded-3xl bg-white dark:bg-deep-900 border border-slate-200/80 dark:border-white/10 p-5 sm:p-6 shadow-[0_20px_50px_rgba(168,85,247,0.15)] dark:shadow-2xl relative z-10">
+
+                                <div
+                                    class="flex items-center justify-between mb-5 pb-3 border-b border-slate-100 dark:border-white/10">
+                                    <span
+                                        class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                                        Simulador Comercial
+                                    </span>
+                                    <span id="sim-status-pill"
+                                        class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/10 dark:border-rose-500/20 dark:text-rose-400 shadow-sm">
+                                        ● FLUJO INESTABLE
+                                    </span>
+                                </div>
+
+                                <!-- Selector Interactivo de Modos -->
+                                <div
+                                    class="grid grid-cols-2 p-1.5 bg-slate-100 dark:bg-white/[0.03] rounded-xl mb-6 border border-slate-200 dark:border-white/5">
+                                    <button id="tab-sin-pauta" onclick="setAdsSimulator('sin')"
+                                        class="py-2.5 px-3 rounded-lg text-xs font-black transition-all bg-white dark:bg-white/10 text-rose-600 dark:text-rose-400 shadow-sm ring-1 ring-slate-200/50 dark:ring-white/10">
+                                        Sin Publicidad
+                                    </button>
+                                    <button id="tab-con-pauta" onclick="setAdsSimulator('con')"
+                                        class="py-2.5 px-3 rounded-lg text-xs font-bold text-slate-500 dark:text-slate-400 transition-all hover:text-slate-900 dark:hover:text-white">
+                                        Con Pauta NextGrow
+                                    </button>
+                                </div>
+
+                                <!-- Bandeja de Entrada Dinámica Simulada -->
+                                <div class="space-y-3 min-h-[220px]" id="sim-content-box">
+
+                                    <!-- ESTADO 1: SIN PAUTA -->
+                                    <div class="space-y-3" id="state-sin-pauta">
+                                        <div
+                                            class="p-3.5 rounded-2xl bg-rose-50/50 dark:bg-rose-500/10 border border-rose-100 dark:border-rose-500/20 text-left">
+                                            <div class="flex items-center justify-between mb-1.5">
+                                                <span
+                                                    class="text-xs font-bold text-rose-700 dark:text-rose-300">WhatsApp
+                                                    (Curioso)</span>
+                                                <span class="text-[10px] font-mono text-rose-500">11:42 AM</span>
+                                            </div>
+                                            <p class="text-xs text-rose-900 dark:text-rose-200">"Hola, ¿cuánto es lo
+                                                mínimo que me deja el servicio? Es que en otro lado me cobran la mitad."
+                                            </p>
+                                        </div>
+
+                                        <div
+                                            class="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/10 text-left opacity-80">
+                                            <div class="flex items-center justify-between mb-1.5">
+                                                <span
+                                                    class="text-xs font-bold text-slate-700 dark:text-slate-300">Prospecto
+                                                    por referido</span>
+                                                <span class="text-[10px] font-mono text-slate-400">Ayer</span>
+                                            </div>
+                                            <p class="text-xs text-slate-600 dark:text-slate-400">"Ah bueno gracias, si
+                                                algo yo le aviso el otro mes a ver si nos queda presupuesto..."</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- ESTADO 2: CON PAUTA HIGH-INTENT -->
+                                    <div class="space-y-3 hidden" id="state-con-pauta">
+                                        <div
+                                            class="p-3.5 rounded-2xl bg-growth-50/80 dark:bg-growth-500/10 border border-growth-200 dark:border-growth-500/20 text-left">
+                                            <div class="flex items-center justify-between mb-1.5">
+                                                <span
+                                                    class="text-xs font-bold text-growth-700 dark:text-growth-300">Lead
+                                                    Calificado (Meta Ads)</span>
+                                                <span
+                                                    class="text-[10px] font-mono text-growth-600 dark:text-growth-400">Hace
+                                                    3 min</span>
+                                            </div>
+                                            <p class="text-xs text-growth-900 dark:text-growth-200 font-medium">"Hola,
+                                                vi su anuncio. Facturamos +$10k y necesitamos agendar para empezar esta
+                                                semana."</p>
+                                        </div>
+
+                                        <div
+                                            class="p-3.5 rounded-2xl bg-purple-50/80 dark:bg-electric-500/10 border border-purple-200 dark:border-electric-500/20 text-left">
+                                            <div class="flex items-center justify-between mb-1.5">
+                                                <span
+                                                    class="text-xs font-bold text-electric-700 dark:text-electric-300">Lead
+                                                    Búsqueda (Google)</span>
+                                                <span
+                                                    class="text-[10px] font-mono text-electric-600 dark:text-electric-400">Hace
+                                                    15 min</span>
+                                            </div>
+                                            <p class="text-xs text-electric-900 dark:text-electric-200 font-medium">"Vi
+                                                su web. ¿Con quién coordino la transferencia para iniciar?"</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Pie interactivo del widget -->
+                                <div
+                                    class="mt-5 pt-4 border-t border-slate-100 dark:border-white/10 flex flex-col items-center justify-center gap-2">
+                                    <span class="text-xs text-slate-600 dark:text-slate-400 font-mono"
+                                        id="sim-footer-metric">
+                                        ROI Mensual: <strong
+                                            class="text-slate-800 dark:text-white">Impredecible</strong>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </section>
+            <!-- ============================================================= -->
+            <!-- SECCIÓN: SELECCIÓN INTERACTIVA (OPTIMIZADA LIGHT & DARK)      -->
+            <!-- ============================================================= -->
+            <section class="py-16 md:py-24 border-b border-slate-200 dark:border-white/[0.08] relative overflow-hidden">
 
-            <!-- Estrategia Ads según Estado -->
-            <section
-                class="py-12 md:py-20 bg-slate-100/50 dark:bg-deep-900/40 border-b border-slate-200 dark:border-white/[0.08]">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
-                        <span class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase font-bold">
-                            ESTRATEGIA A MEDIDA</span>
-                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1">
-                            Adaptado al estado actual de tu empresa
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+                    <!-- Encabezado -->
+                    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+                        <span
+                            class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
+                            // PLAN A TU MEDIDA
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+                            ¿En qué punto está tu negocio hoy?
                         </h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 font-medium max-w-xl mx-auto">
+                            No necesitas saber de marketing ni de tecnología. Elige tu situación actual para ver la
+                            solución exacta:
+                        </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        <!-- Estado A -->
+                    <!-- 2 Tarjetas Interactivas -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+
+                        <!-- TARJETA 01: NUNCA HE INVERTIDO -->
+                        <div onclick="openModalWithContext('Empezar desde cero: Lanzar primera campaña')"
+                            class="rounded-3xl bg-white dark:bg-deep-900/90 backdrop-blur-xl border-2 border-slate-200 dark:border-white/[0.08] hover:border-electric-500 dark:hover:border-electric-400 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 cursor-pointer shadow-lg hover:shadow-2xl shadow-slate-200/50 dark:shadow-black/50 dark:hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] group relative overflow-hidden">
+
+                            <!-- Borde de luz superior -->
+                            <div
+                                class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-electric-500 to-purple-400">
+                            </div>
+
+                            <div class="space-y-6">
+                                <!-- Badge -->
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-electric-50 dark:bg-electric-500/15 text-electric-700 dark:text-electric-300 border border-electric-200 dark:border-electric-500/30">
+                                        🌱 Cero experiencia previa
+                                    </span>
+                                    <span
+                                        class="text-[11px] font-mono text-slate-400 dark:text-slate-400 group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors font-bold">
+                                        Haz clic para elegir ➔
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <h3
+                                        class="text-2xl font-black text-slate-900 dark:text-white group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                        «Nunca he puesto anuncios en internet»
+                                    </h3>
+                                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 font-medium">
+                                        Quieres clientes pero te da miedo botar dinero probando cosas que no entiendes.
+                                    </p>
+                                </div>
+
+                                <!-- Beneficios tangibles -->
+                                <div class="space-y-3 pt-2">
+                                    <div
+                                        class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] group-hover:bg-purple-50/50 dark:group-hover:bg-purple-900/20 group-hover:border-purple-200 dark:group-hover:border-purple-500/30 transition-all">
+                                        <span
+                                            class="w-6 h-6 rounded-lg bg-electric-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm shadow-electric-600/30">✓</span>
+                                        <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                                            <strong class="text-slate-900 dark:text-white">Nosotros nos encargamos de
+                                                todo:</strong> Diseñamos las piezas, los videos y los textos para que tú
+                                            solo atiendas ventas.
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] group-hover:bg-purple-50/50 dark:group-hover:bg-purple-900/20 group-hover:border-purple-200 dark:group-hover:border-purple-500/30 transition-all">
+                                        <span
+                                            class="w-6 h-6 rounded-lg bg-electric-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm shadow-electric-600/30">✓</span>
+                                        <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                                            <strong class="text-slate-900 dark:text-white">Directo a tu
+                                                WhatsApp:</strong> Cada persona interesada llega preguntando por tu
+                                            producto con ganas reales de comprar.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón con disparador psicológico -->
+                            <div class="pt-8 space-y-2">
+                                <div
+                                    class="w-full py-3.5 px-6 rounded-xl bg-slate-900 dark:bg-white/10 group-hover:bg-electric-600 dark:group-hover:bg-electric-500 text-white font-black text-xs sm:text-sm tracking-wide transition-all shadow-md flex items-center justify-center gap-2 border border-transparent dark:border-white/10">
+                                    <span>Quiero empezar fácil y seguro</span>
+                                    <span class="group-hover:translate-x-1.5 transition-transform">➔</span>
+                                </div>
+                                <p class="text-[10px] text-center text-slate-500 dark:text-slate-400 font-mono">
+                                    🎁 Te decimos cuántas ventas podrías generar antes de gastar un peso
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- TARJETA 02: YA INVIERTO PERO NO VENDO -->
+                        <div onclick="openModalWithContext('Auditoría urgente: Ya invierto en pauta pero no tengo retorno')"
+                            class="rounded-3xl bg-white dark:bg-deep-900/90 backdrop-blur-xl border-2 border-slate-200 dark:border-white/[0.08] hover:border-growth-500 dark:hover:border-growth-400 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 cursor-pointer shadow-lg hover:shadow-2xl shadow-slate-200/50 dark:shadow-black/50 dark:hover:shadow-[0_0_40px_rgba(16,185,129,0.2)] group relative overflow-hidden">
+
+                            <!-- Borde de luz superior -->
+                            <div
+                                class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-growth-500 to-emerald-400">
+                            </div>
+
+                            <div class="space-y-6">
+                                <!-- Badge -->
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-growth-50 dark:bg-growth-500/15 text-growth-700 dark:text-growth-300 border border-growth-200 dark:border-growth-500/30">
+                                        ⚡ Detector de plata perdida
+                                    </span>
+                                    <span
+                                        class="text-[11px] font-mono text-slate-400 dark:text-slate-400 group-hover:text-growth-600 dark:group-hover:text-growth-400 transition-colors font-bold">
+                                        Haz clic para elegir ➔
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <h3
+                                        class="text-2xl font-black text-slate-900 dark:text-white group-hover:text-growth-600 dark:group-hover:text-growth-400 transition-colors">
+                                        «Ya invierto, pero no me deja ganancias»
+                                    </h3>
+                                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 font-medium">
+                                        Llegan muchos curiosos preguntando precios pero nadie cierra, o la agencia no da
+                                        resultados.
+                                    </p>
+                                </div>
+
+                                <!-- Beneficios tangibles -->
+                                <div class="space-y-3 pt-2">
+                                    <div
+                                        class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] group-hover:bg-rose-50/50 dark:group-hover:bg-rose-900/20 group-hover:border-rose-200 dark:group-hover:border-rose-500/30 transition-all">
+                                        <span
+                                            class="w-6 h-6 rounded-lg bg-rose-500/20 dark:bg-rose-500/30 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-xs shrink-0">✕</span>
+                                        <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                                            <strong class="text-slate-900 dark:text-white">Filtramos a los
+                                                preguntones:</strong> Cambiamos el mensaje para que solo te escriba
+                                            gente dispuesta a pagar lo que vale tu producto.
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] group-hover:bg-growth-50/50 dark:group-hover:bg-growth-900/20 group-hover:border-growth-200 dark:group-hover:border-growth-500/30 transition-all">
+                                        <span
+                                            class="w-6 h-6 rounded-lg bg-growth-500 text-deep-950 flex items-center justify-center font-bold text-xs shrink-0 shadow-sm shadow-growth-500/30">✓</span>
+                                        <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">
+                                            <strong class="text-slate-900 dark:text-white">Multiplicar lo que
+                                                metes:</strong> La meta es que cada peso que inviertas en publicidad te
+                                            devuelva 3 o 4 veces su valor en ventas.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón con disparador psicológico -->
+                            <div class="pt-8 space-y-2">
+                                <div
+                                    class="w-full py-3.5 px-6 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs sm:text-sm tracking-wide transition-all shadow-lg shadow-growth-500/25 flex items-center justify-center gap-2 group-hover:scale-[1.02]">
+                                    <span>Descubrir dónde estoy perdiendo plata</span>
+                                    <span class="group-hover:translate-x-1.5 transition-transform">➔</span>
+                                </div>
+                                <p class="text-[10px] text-center text-slate-500 dark:text-slate-400 font-mono">
+                                    ⚡ Te decimos qué está fallando en tus anuncios en menos de 24 horas
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Barra complementaria de dudas -->
+                    <!-- Barra inferior interactiva: Toda la barra es el botón de WhatsApp -->
+                    <a href="https://wa.me/573135224026?text=Hola%20NextGrow%2C%20quiero%20saber%20cu%C3%A1l%20es%20el%20mejor%20plan%20de%20publicidad%20para%20mi%20negocio"
+                        target="_blank" rel="noopener noreferrer"
+                        class="mt-10 p-4 sm:p-5 rounded-2xl bg-slate-100/80 hover:bg-slate-200/70 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 hover:border-growth-500/50 dark:hover:border-growth-500/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group cursor-pointer">
+
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="w-9 h-9 rounded-xl bg-growth-500/10 dark:bg-growth-500/20 text-growth-600 dark:text-growth-400 flex items-center justify-center text-lg shrink-0 border border-growth-500/20 group-hover:scale-110 transition-transform">
+                                💡
+                            </span>
+                            <div>
+                                <p class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
+                                    ¿No sabes cuál es la opción ideal para tu caso?
+                                </p>
+                                <p class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                    Cuéntanos qué vendes y te recomendamos el camino más rentable en 5 minutos.
+                                </p>
+                            </div>
+                        </div>
+
                         <div
-                            class="p-6 sm:p-8 rounded-3xl glass-panel border border-slate-200 dark:border-white/10 space-y-4">
-                            <span
-                                class="px-3 py-1 rounded-full bg-purple-500/10 text-brand-purple dark:text-electric-400 text-xs font-mono font-bold">ESCENARIO
-                                A</span>
-                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">¿Nunca has
-                                invertido en publicidad digital?</h3>
-                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                                Creamos toda la infraestructura comercial desde cero: configuración de Pixel/API de
-                                Conversiones, diseño de anuncios de alto impacto y lanzamiento de campañas probadas.
-                            </p>
-                            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 pt-2">
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Testeo rápido de audiencias con intención comercial</li>
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Configuración técnica correcta para evitar bloqueos</li>
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Integración directa con tu WhatsApp / CRM</li>
-                            </ul>
+                            class="flex items-center gap-2 text-xs font-mono font-bold text-growth-600 dark:text-growth-400 bg-growth-500/10 dark:bg-growth-500/15 px-4 py-2 rounded-xl border border-growth-500/30 shrink-0 group-hover:bg-growth-500 group-hover:text-deep-950 transition-all">
+                            <span>Preguntar por WhatsApp</span>
+                            <span class="group-hover:translate-x-1 transition-transform">➔</span>
                         </div>
+                    </a>
 
-                        <!-- Estado B -->
-                        <div class="p-6 sm:p-8 rounded-3xl glass-panel border border-growth-500/30 space-y-4 shadow-xl">
-                            <span
-                                class="px-3 py-1 rounded-full bg-growth-500/20 text-growth-700 dark:text-growth-400 text-xs font-mono font-bold">ESCENARIO
-                                B</span>
-                            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">¿Ya inviertes pero
-                                no estás vendiendo lo suficiente?</h3>
-                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                                Auditamos tu cuenta actual, identificamos fugas en el embudo y reestructuramos tus
-                                campañas hacia un modelo enfocado 100% en retorno bancario (ROAS).
-                            </p>
-                            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 pt-2">
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Limpieza de audiencias quemadas y curiosos</li>
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Reescritura de copies y nuevos ángulos de oferta</li>
-                                <li class="flex items-center gap-2"><span class="text-growth-500 font-bold">✓</span>
-                                    Atribución exacta de ventas por canal</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-10 md:mt-12">
-                        <button onclick="openModal()"
-                            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs sm:text-sm shadow-xl active:scale-95 transition">
-                            Auditar mis campañas o lanzar la primera →
-                        </button>
-                    </div>
                 </div>
             </section>
 
@@ -3873,7 +4179,7 @@
         </div>
     </div>
 
-    <!-- Lead Diagnostic Modal -->
+    <!-- Lead Diagnostic Modal (Persuasivo y Limpio) -->
     <div id="diagnostic-modal"
         class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div
@@ -3884,10 +4190,19 @@
 
             <div id="modal-form-view">
                 <div class="text-left mb-6">
-                    <h3 class="text-xl font-black text-slate-900 dark:text-white">¿Por dónde quieres empezar a crecer?
+                    <span
+                        class="text-[11px] font-mono text-growth-600 dark:text-growth-400 bg-growth-500/10 px-2.5 py-1 rounded-full border border-growth-500/20 font-bold uppercase tracking-wider">
+                        DIAGNÓSTICO DE ADQUISICIÓN 1 A 1
+                    </span>
+
+                    <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-3 leading-tight">¿Por
+                        dónde quieres empezar a crecer?
                     </h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Completa los datos para tener asesoría
-                        con un experto sin costo:</p>
+
+                    <!-- Descripción corta, suave y persuasiva -->
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                        Completa los datos para tener asesoría con un experto sin costo
+                    </p>
                 </div>
 
                 <form onsubmit="submitLead(event)" class="space-y-4 text-left">
@@ -3906,26 +4221,33 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Área
-                            prioritaria</label>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">¿Qué área te
+                            gustaría potenciar primero?</label>
                         <select id="lead-area" required
                             class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-deep-950 border border-slate-200 dark:border-white/10 text-xs text-slate-900 dark:text-white focus:ring-2 focus:ring-electric-500 focus:outline-none transition">
-                            <option value="" disabled selected>Selecciona una opción...</option>
-                            <option value="Automatizaciones & CRM AI en WhatsApp">Automatizaciones & CRM AI en WhatsApp
-                            </option>
-                            <option value="Desarrollo Web & Embudos CRO">Desarrollo Web & Embudos CRO</option>
-                            <option value="Publicidad Digital (Meta & Google Ads)">Publicidad Digital (Meta & Google
+                            <option value="" disabled selected>Selecciona tu objetivo principal...</option>
+                            <option value="Publicidad Digital (Meta & Google Ads)">🎯 Publicidad Digital (Meta & Google
                                 Ads)</option>
-                            <option value="Software Empresarial a Medida">Software Empresarial a Medida</option>
+                            <option value="Desarrollo Web & Embudos CRO">🌐 Desarrollo Web & Embudos de Conversión
+                            </option>
+                            <option value="Automatizaciones & CRM AI en WhatsApp">⚡ Automatizaciones & CRM AI en
+                                WhatsApp</option>
+                            <option value="Ecosistema Completo de Ventas">💎 Ecosistema Completo de Ventas</option>
+                            <option value="Software Empresarial a Medida">🏗️ Software Empresarial a Medida</option>
                         </select>
                     </div>
 
-                    <div class="pt-3">
+                    <div class="pt-2">
                         <button type="submit"
-                            class="w-full py-3 rounded-xl bg-gradient-to-r from-growth-500 to-growth-600 hover:from-growth-400 hover:to-growth-500 text-deep-950 font-black text-xs shadow-lg transition active:scale-95">
-                            Confirmar y agendar diagnóstico
+                            class="w-full py-3.5 rounded-xl bg-gradient-to-r from-growth-500 to-growth-600 hover:from-growth-400 hover:to-growth-500 text-deep-950 font-black text-xs sm:text-sm shadow-lg transition active:scale-95 flex items-center justify-center gap-1.5">
+                            <span>Agendar mi diagnóstico sin costo</span>
+                            <span>➔</span>
                         </button>
                     </div>
+
+                    <p class="text-[10px] text-center text-slate-500 dark:text-slate-400 font-mono pt-1">
+                        · Te contactaremos directamente por WhatsApp ·
+                    </p>
                 </form>
             </div>
 
@@ -3935,8 +4257,8 @@
                     ✓
                 </div>
                 <h4 class="text-lg font-bold text-slate-900 dark:text-white">¡Redirigiendo a WhatsApp!</h4>
-                <p class="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto">Te estamos redirigiendo para
-                    enviar la solicitud de tu diagnóstico.</p>
+                <p class="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto">Te conectamos con un especialista
+                    para agendar tu sesión.</p>
                 <button onclick="closeModal()"
                     class="mt-4 px-6 py-2.5 rounded-xl bg-slate-100 dark:bg-white/[0.08] text-xs font-bold transition hover:bg-slate-200 dark:hover:bg-white/10 text-slate-800 dark:text-white">
                     Cerrar
@@ -3946,26 +4268,23 @@
         </div>
     </div>
 
-    <!-- Video Playback Modal -->
+    <!-- Video Playback Modal (Formato Teléfono Real) -->
     <div id="video-modal"
         class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div
-            class="bg-white dark:bg-deep-950 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white">
-            <div
-                class="flex items-center justify-between p-4 bg-slate-100 dark:bg-deep-900 border-b border-slate-200 dark:border-white/10">
-                <div>
-                    <h4 id="video-title" class="text-xs font-bold truncate">Masterclass NextGrow</h4>
-                    <p id="video-sub" class="text-[10px] text-slate-500">Recurso para clientes</p>
-                </div>
-                <button onclick="closeVideo()" class="text-slate-400 hover:text-white p-1">✕</button>
-            </div>
-            <div class="aspect-video bg-deep-950 flex flex-col items-center justify-center text-center p-6 text-white">
-                <div
-                    class="w-14 h-14 rounded-full bg-electric-600/30 text-electric-400 border border-electric-500/40 flex items-center justify-center mb-3 text-lg font-bold">
-                    ▶</div>
-                <p class="font-bold text-sm text-white" id="video-now-playing">Reproducción de Masterclass</p>
-                <p class="text-xs text-slate-400 mt-1 max-w-md">Listo para incrustar reproductor de YouTube, Loom o
-                    Vimeo.</p>
+
+        <!-- Contenedor con medidas fijas directas para evitar colapsos -->
+        <div style="width: 380px; height: 680px; max-width: 95vw; max-height: 86vh;"
+            class="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+
+            <!-- Botón flotante para cerrar -->
+            <button onclick="closeVideo()"
+                class="absolute top-4 right-4 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-black/80 hover:bg-black text-white hover:text-rose-400 font-bold transition shadow-lg border border-white/20">
+                ✕
+            </button>
+
+            <!-- Contenedor del reproductor -->
+            <div id="video-frame-container" style="width: 100%; height: 100%;">
+                <!-- El iframe se inyecta aquí -->
             </div>
         </div>
     </div>

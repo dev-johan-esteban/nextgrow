@@ -117,54 +117,55 @@ const AGENCY_WHATSAPP_NUMBER = "573135224026";
 function submitLead(e) {
     e.preventDefault();
 
-    const nameInput = document.getElementById('lead-name');
-    const phoneInput = document.getElementById('lead-phone');
-    const areaInput = document.getElementById('lead-area');
+    const name = document.getElementById('lead-name')?.value || '';
+    const phone = document.getElementById('lead-phone')?.value || '';
+    const area = document.getElementById('lead-area')?.value || '';
 
-    const name = nameInput ? nameInput.value.trim() : '';
-    const phone = phoneInput ? phoneInput.value.trim() : '';
-    const area = areaInput ? areaInput.value : '';
+    document.getElementById('modal-form-view').classList.add('hidden');
+    document.getElementById('modal-success-view').classList.remove('hidden');
 
-    if (!name || !phone || !area) {
-        alert("Por favor completa todos los campos del formulario.");
-        return;
-    }
+    const message = `Hola NextGrow 👋\n\nMi nombre es *${name}*.\nMi contacto es: ${phone}\n\nEstoy interesado en implementar un sistema de captación y prospección para mi negocio enfocado en:\n👉 *${area}*.\n\nQuiero revisar la estrategia para atraer clientes que realmente compren.`;
 
-    const message = `👋 *Hola NextGrow, quiero agendar mi diagnóstico gratuito.*\n\n` +
-        `📌 *Nombre:* ${name}\n` +
-        `📱 *WhatsApp:* ${phone}\n` +
-        `🎯 *Área prioritaria:* ${area}`;
+    const targetPhone = "573135224026";
+    const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`;
 
-    const whatsappUrl = `https://wa.me/${AGENCY_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-    const formView = document.getElementById('modal-form-view');
-    const successView = document.getElementById('modal-success-view');
-
-    if (formView && successView) {
-        formView.classList.add('hidden');
-        successView.classList.remove('hidden');
-    }
-
-    window.open(whatsappUrl, '_blank');
-    e.target.reset();
+    setTimeout(() => {
+        window.open(waUrl, '_blank');
+        closeModal();
+    }, 1100);
 }
 
-function showVideo(title, sub) {
-    const m = document.getElementById('video-modal');
-    const t = document.getElementById('video-title');
-    const s = document.getElementById('video-sub');
-    const p = document.getElementById('video-now-playing');
-    if (m && t && s && p) {
-        t.textContent = title;
-        s.textContent = sub;
-        p.textContent = title;
-        m.classList.remove('hidden');
+// ==========================================
+// CONTROL DEL REPRODUCTOR DE VIDEO MODAL
+// ==========================================
+function showVideo(title, desc, videoId) {
+    const modal = document.getElementById('video-modal');
+    const container = document.getElementById('video-frame-container');
+
+    if (container && videoId) {
+        container.innerHTML = `
+            <iframe style="width: 100%; height: 100%; border: 0;" 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                title="${title}" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        `;
+    }
+
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeVideo() {
-    const m = document.getElementById('video-modal');
-    if (m) m.classList.add('hidden');
+    const modal = document.getElementById('video-modal');
+    const container = document.getElementById('video-frame-container');
+
+    if (modal) modal.classList.add('hidden');
+    if (container) container.innerHTML = '';
+    document.body.style.overflow = '';
 }
 
 function toggleFaq(id) {
@@ -939,3 +940,70 @@ window.addEventListener('load', () => {
         animateCounter('hero-leads-counter', 800, 1237, 2200);
     }, 500);
 });
+
+// ==========================================
+// SIMULADOR INTERACTIVO: DOLOR VS PAUTA NEXTGROW
+// ==========================================
+function setAdsSimulator(mode) {
+    const tabSin = document.getElementById('tab-sin-pauta');
+    const tabCon = document.getElementById('tab-con-pauta');
+    const stateSin = document.getElementById('state-sin-pauta');
+    const stateCon = document.getElementById('state-con-pauta');
+    const statusPill = document.getElementById('sim-status-pill');
+    const footerMetric = document.getElementById('sim-footer-metric');
+
+    // Clases base para el botón inactivo
+    const inactiveClass = "py-2.5 px-3 rounded-lg text-xs font-bold text-slate-500 dark:text-slate-400 transition-all hover:text-slate-900 dark:hover:text-white";
+
+    if (mode === 'sin') {
+        // Estilos Botón Activo SIN pauta
+        tabSin.className = "py-2.5 px-3 rounded-lg text-xs font-black transition-all bg-white dark:bg-white/10 text-rose-600 dark:text-rose-400 shadow-sm ring-1 ring-slate-200/50 dark:ring-white/10";
+        tabCon.className = inactiveClass;
+
+        // Vistas
+        stateSin.classList.remove('hidden');
+        stateCon.classList.add('hidden');
+
+        // Textos Dinámicos
+        statusPill.textContent = "● FLUJO INESTABLE";
+        statusPill.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-600 border border-rose-200 dark:bg-rose-500/10 dark:border-rose-500/20 dark:text-rose-400 shadow-sm";
+        footerMetric.innerHTML = "ROI Mensual: <strong class='text-slate-800 dark:text-white'>Impredecible</strong>";
+    } else {
+        // Estilos Botón Activo CON pauta
+        tabCon.className = "py-2.5 px-3 rounded-lg text-xs font-black transition-all bg-white dark:bg-white/10 text-growth-600 dark:text-growth-400 shadow-sm ring-1 ring-slate-200/50 dark:ring-white/10";
+        tabSin.className = inactiveClass;
+
+        // Vistas
+        stateSin.classList.add('hidden');
+        stateCon.classList.remove('hidden');
+
+        // Textos Dinámicos
+        statusPill.textContent = "● CLIENTES ENTRANTE (ROAS 4x)";
+        statusPill.className = "text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-growth-50 text-growth-700 border border-growth-200 dark:bg-growth-500/10 dark:border-growth-500/20 dark:text-growth-400 shadow-sm";
+        footerMetric.innerHTML = "Costo por lead calificado: <strong class='text-growth-600 dark:text-growth-400'>-62% vs mercado</strong>";
+    }
+}
+
+// ==========================================
+// APERTURA DE MODAL CON CONTEXTO ESPECÍFICO
+// ==========================================
+function openModalWithContext(contextTitle) {
+    const modal = document.getElementById('diagnostic-modal');
+    const selectArea = document.getElementById('lead-area');
+    
+    // Si existe el selector en el modal, preseleccionamos la pauta
+    if (selectArea) {
+        // Busca si hay una opción que coincida o déjalo en pauta
+        for (let i = 0; i < selectArea.options.length; i++) {
+            if (selectArea.options[i].text.includes('Publicidad Digital')) {
+                selectArea.selectedIndex = i;
+                break;
+            }
+        }
+    }
+
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
