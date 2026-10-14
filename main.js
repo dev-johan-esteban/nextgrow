@@ -990,21 +990,26 @@ function setAdsSimulator(mode) {
 function openModalWithContext(contextTitle) {
     const modal = document.getElementById('diagnostic-modal');
     const selectArea = document.getElementById('lead-area');
-
-    // Si existe el selector en el modal, preseleccionamos la pauta
-    if (selectArea) {
-        // Busca si hay una opción que coincida o déjalo en pauta
+    
+    // Preselecciona el servicio en el formulario según la tarjeta
+    if (selectArea && contextTitle) {
         for (let i = 0; i < selectArea.options.length; i++) {
-            if (selectArea.options[i].text.includes('Publicidad Digital')) {
+            if (contextTitle.includes('Publicidad') && selectArea.options[i].text.includes('Publicidad')) {
+                selectArea.selectedIndex = i;
+                break;
+            } else if (contextTitle.includes('Web') && selectArea.options[i].text.includes('Web')) {
+                selectArea.selectedIndex = i;
+                break;
+            } else if (contextTitle.includes('WhatsApp') && selectArea.options[i].text.includes('WhatsApp')) {
                 selectArea.selectedIndex = i;
                 break;
             }
         }
     }
 
+    // Abre el modal exactamente igual que el resto de botones de la web
     if (modal) {
         modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
     }
 }
 

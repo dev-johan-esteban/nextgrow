@@ -1924,64 +1924,204 @@
                 </div>
             </section>
 
-            <!-- Ficha de Autor & Llamado a la Acción -->
-            <section class="py-16 md:py-20">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <!-- ============================================================= -->
+            <!-- SECCIÓN FINAL DEL BLOG: DIAGNÓSTICO + CIERRE COMERCIAL        -->
+            <!-- ============================================================= -->
+            <section
+                class="py-16 md:py-24 border-t border-slate-200 dark:border-white/[0.08] relative overflow-hidden bg-slate-50/60 dark:bg-deep-950/40">
 
-                    <!-- Ficha del Autor -->
-                    <div
-                        class="p-6 sm:p-8 rounded-3xl glass-panel border border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                        <div
-                            class="w-20 h-20 rounded-full bg-gradient-to-tr from-electric-600 to-growth-500 p-1 shrink-0 shadow-lg">
-                            <div
-                                class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-white font-black text-xl">
-                                AM
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-lg font-black text-slate-900 dark:text-white">Andrés Montoya</h3>
-                            <p class="text-xs font-bold text-electric-600 dark:text-electric-400 font-mono">Fundador &
-                                CEO • NextGrow • Estratega Digital</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed pt-1">
-                                Llevo más de 4 años construyendo ecosistemas digitales de ventas para negocios en más de
-                                7 países. Todo lo que escribo en este blog viene de experiencias reales con más de 120
-                                clientes. No hay teoría aquí — solo lo que funcionó, lo que no funcionó y por qué.
-                            </p>
-                        </div>
+                <!-- Destellos ambientales suaves adaptados a ambos temas -->
+                <div
+                    class="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-electric-500/10 dark:bg-electric-500/15 rounded-full blur-[100px] pointer-events-none">
+                </div>
+                <div
+                    class="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-growth-500/10 dark:bg-growth-500/15 rounded-full blur-[100px] pointer-events-none">
+                </div>
+
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+
+                    <!-- Encabezado Estratégico -->
+                    <div class="text-center max-w-2xl mx-auto space-y-3">
+                        <span
+                            class="text-xs font-mono text-growth-600 dark:text-growth-400 uppercase tracking-widest font-bold">
+                            // DEL ARTÍCULO A LA ACCIÓN
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                            ¿Qué cuello de botella frena tus ventas hoy?
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
+                            Leer teoría no escala una empresa. Identifica la falla en tu proceso comercial y apliquemos
+                            la solución exacta:
+                        </p>
                     </div>
 
-                    <!-- Banner Final CTA -->
+                    <!-- Grid de 3 Soluciones (Reemplaza la ficha del CEO) -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+
+                        <!-- TARJETA 01: TRÁFICO Y ANUNCIOS -->
+                        <div
+                            class="rounded-3xl bg-white dark:bg-deep-900/90 border-2 border-slate-200 dark:border-white/10 hover:border-electric-500 dark:hover:border-electric-400 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-lg shadow-slate-200/50 dark:shadow-black/40 group relative overflow-hidden">
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-electric-500"></div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="w-10 h-10 rounded-2xl bg-electric-500/10 text-electric-600 dark:text-electric-400 flex items-center justify-center text-lg font-bold border border-electric-500/20">
+                                        🎯
+                                    </span>
+                                    <span
+                                        class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                        Adquisición
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <span
+                                        class="text-[11px] font-mono text-rose-500 dark:text-rose-400 font-bold block mb-1">
+                                        ✕ POCOS CLIENTES NUEVOS
+                                    </span>
+                                    <h3
+                                        class="text-lg font-black text-slate-900 dark:text-white group-hover:text-electric-600 dark:group-hover:text-electric-400 transition-colors">
+                                        Publicidad Digital (Meta & Google Ads)
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                        Campañas matemáticas enfocadas en compradores listos para pagar, eliminando el
+                                        desperdicio en clics vacíos.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button onclick="openModalWithContext('Blog: Publicidad Digital (Meta & Google Ads)')"
+                                    class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-white/10 group-hover:bg-electric-600 dark:group-hover:bg-electric-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-sm">
+                                    <span>Auditar mis Anuncios</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- TARJETA 02: CONVERSIÓN WEB CRO -->
+                        <div
+                            class="rounded-3xl bg-white dark:bg-deep-900/90 border-2 border-slate-200 dark:border-white/10 hover:border-purple-500 dark:hover:border-purple-400 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-lg shadow-slate-200/50 dark:shadow-black/40 group relative overflow-hidden">
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-purple-500"></div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="w-10 h-10 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg font-bold border border-purple-500/20">
+                                        🌐
+                                    </span>
+                                    <span
+                                        class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                        Conversión
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <span
+                                        class="text-[11px] font-mono text-rose-500 dark:text-rose-400 font-bold block mb-1">
+                                        ✕ VISITAS QUE NO COMPRAN
+                                    </span>
+                                    <h3
+                                        class="text-lg font-black text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                        Páginas Web & Embudos CRO
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                        Arquitectura web diseñada para convertir visitantes fríos en prospectos
+                                        calificados listos para cotizar.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button onclick="openModalWithContext('Blog: Optimización Web y Embudo CRO')"
+                                    class="w-full py-3 px-4 rounded-xl bg-slate-900 dark:bg-white/10 group-hover:bg-purple-600 dark:group-hover:bg-purple-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-sm">
+                                    <span>Auditar mi Web</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- TARJETA 03: WHATSAPP AUTOMATION & CIERRE -->
+                        <div
+                            class="rounded-3xl bg-white dark:bg-deep-900/90 border-2 border-slate-200 dark:border-white/10 hover:border-growth-500 dark:hover:border-growth-400 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-lg shadow-slate-200/50 dark:shadow-black/40 group relative overflow-hidden">
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-growth-500"></div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span
+                                        class="w-10 h-10 rounded-2xl bg-growth-500/10 text-growth-600 dark:text-growth-400 flex items-center justify-center text-lg font-bold border border-growth-500/20">
+                                        💬
+                                    </span>
+                                    <span
+                                        class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                                        Cierre & Filtro
+                                    </span>
+                                </div>
+
+                                <div>
+                                    <span
+                                        class="text-[11px] font-mono text-rose-500 dark:text-rose-400 font-bold block mb-1">
+                                        ✕ CHATS QUE QUITAN TIEMPO
+                                    </span>
+                                    <h3
+                                        class="text-lg font-black text-slate-900 dark:text-white group-hover:text-growth-600 dark:group-hover:text-growth-400 transition-colors">
+                                        Filtro y Cierre en WhatsApp
+                                    </h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                        Automatizaciones inteligentes que filtran curiosos antes de que tu equipo
+                                        comercial dedique horas a responder.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button onclick="openModalWithContext('Blog: Automatización de WhatsApp')"
+                                    class="w-full py-3 px-4 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs transition-all flex items-center justify-center gap-2 shadow-sm">
+                                    <span>Filtrar mis Chats</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Banner Final Pulido (Reemplaza el viejo banner con lenguaje de negocios real) -->
                     <div
-                        class="p-8 sm:p-12 rounded-3xl bg-slate-900 text-white border border-purple-500/20 text-center space-y-6 shadow-2xl relative overflow-hidden">
-                        <span
-                            class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-growth-500/10 border border-growth-500/30 text-growth-400 text-xs font-mono font-bold uppercase">
-                            ● ¿LISTO PARA IMPLEMENTAR?
-                        </span>
+                        class="p-8 sm:p-10 rounded-3xl bg-white dark:bg-deep-900 border-2 border-slate-200 dark:border-white/10 text-center space-y-5 shadow-xl shadow-slate-200/50 dark:shadow-2xl relative overflow-hidden">
 
-                        <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                        <div
+                            class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-growth-500/10 border border-growth-500/30 text-growth-600 dark:text-growth-400 text-xs font-mono font-bold uppercase">
+                            ● IMPLEMENTACIÓN COMERCIAL DIRECTA
+                        </div>
+
+                        <h3
+                            class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                             Leer está bien.<br>
-                            <span class="text-growth-400">Implementar cambia tu negocio.</span>
-                        </h2>
+                            <span class="text-gradient">Ejecutar el sistema es lo que genera facturación.</span>
+                        </h3>
 
-                        <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-                            Si querés que te ayudemos a aplicar estas estrategias en tu negocio específico, agendá un
-                            diagnóstico gratuito de 30 minutos.
+                        <p
+                            class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+                            Si buscas estructurar tu captación con pauta, landing page optimizada y WhatsApp
+                            automatizado bajo una misma estrategia, revisemos tu caso.
                         </p>
 
                         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                             <button onclick="openModal()"
                                 class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-growth-500 hover:bg-growth-400 text-deep-950 font-black text-xs sm:text-sm transition shadow-xl active:scale-95">
-                                Agendar diagnóstico gratuito
+                                Evaluar mi caso comercial →
                             </button>
-                            <a href="https://wa.me/?text=Hola%20NextGrow,%20quiero%20hablar%20con%20el%20equipo"
-                                target="_blank"
-                                class="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/20 hover:bg-white/10 text-white font-bold text-xs sm:text-sm transition">
-                                Hablar con el equipo
+                            <a href="https://wa.me/573135224026?text=Hola%20NextGrow,%20leí%20el%20blog%20y%20quiero%20revisar%20mi%20caso"
+                                target="_blank" rel="noopener noreferrer"
+                                class="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-slate-300 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-800 dark:text-white font-bold text-xs sm:text-sm transition">
+                                Conversar por WhatsApp
                             </a>
                         </div>
 
-                        <p class="text-[10px] font-mono text-slate-400 pt-2">Sin compromiso • Respuesta en menos de 24h
-                            • 100% gratuito</p>
+                        <p class="text-[10px] font-mono text-slate-500 dark:text-slate-400 pt-1">
+                            · Enfoque 100% en captación con intención de compra · Cero curiosos ·
+                        </p>
                     </div>
 
                 </div>
