@@ -50,7 +50,8 @@ function switchView(view) {
         'desarrollo-web': document.getElementById('view-desarrollo-web'),
         'automatizaciones': document.getElementById('view-automatizaciones'),
         'software': document.getElementById('view-software'),
-        'publicidad-digital': document.getElementById('view-publicidad-digital')
+        'publicidad-digital': document.getElementById('view-publicidad-digital'),
+        'legal': document.getElementById('view-legal') // 👈 Vista Legal agregada
     };
 
     const btnInicio = document.getElementById('nav-btn-inicio');
@@ -70,21 +71,26 @@ function switchView(view) {
     const inactiveClass = "px-5 py-2 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all duration-300";
     const activeClass = "px-5 py-2 rounded-full transition-all duration-300 bg-brand-purple text-white shadow-md shadow-purple-950/30";
 
+    // Resetear estilos de los botones del menú superior
     if (btnInicio) btnInicio.className = inactiveClass;
     if (btnServicios) btnServicios.className = inactiveClass;
     if (btnBlog) btnBlog.className = inactiveClass;
 
-    if (view === 'servicios' || view === 'desarrollo-web' || view === 'automatizaciones' || view === 'software' || view === 'publicidad-digital') {
+    // Asignar estado activo según la vista
+    if (['servicios', 'desarrollo-web', 'automatizaciones', 'software', 'publicidad-digital'].includes(view)) {
         if (btnServicios) btnServicios.className = activeClass;
     } else if (view === 'blog') {
         if (btnBlog) btnBlog.className = activeClass;
-        renderBlogArticles();
+        if (typeof renderBlogArticles === 'function') renderBlogArticles();
+    } else if (view === 'legal') {
+        // En vista legal todos los botones de la barra quedan inactivos
     } else {
         if (btnInicio) btnInicio.className = activeClass;
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 
 function toggleMobileNav() {
     const m = document.getElementById('mobile-menu');
@@ -1081,3 +1087,68 @@ function triggerBackupDemo() {
         metricShield.innerHTML = "Menos de 30 minutos";
     }
 }
+
+// ==========================================
+// CONTROL DE VISTAS (SPA ROUTING)
+// ==========================================
+function goToLegalView(targetAccordionIndex = 1) {
+    // Si tu switchView admite vistas:
+    if (typeof switchView === 'function') {
+        switchView('legal');
+    } else {
+        // Fallback por si tu switchView usa IDs fijos
+        const views = ['view-home', 'view-servicios', 'view-blog', 'view-publicidad-digital', 'view-legal'];
+        views.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        });
+        const legal = document.getElementById('view-legal');
+        if (legal) legal.classList.remove('hidden');
+    }
+
+    // Lleva la pantalla arriba como una página nueva
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Abre el punto legal seleccionado
+    if (typeof toggleLegalAccordion === 'function') {
+        toggleLegalAccordion(targetAccordionIndex);
+    }
+}
+
+// ==========================================
+// FUNCIÓN PARA ABRIR / CERRAR ACORDEÓN LEGAL
+// ==========================================
+window.toggleLegalAccordion = function(targetIndex) {
+    const targetContent = document.getElementById(`legal-content-${targetIndex}`);
+    const targetChevron = document.getElementById(`legal-chevron-${targetIndex}`);
+    const targetBtn = document.getElementById(`legal-btn-${targetIndex}`);
+
+    if (!targetContent) return;
+
+    // Verificar si la tarjeta presionada ya estaba abierta
+    const isAlreadyOpen = !targetContent.classList.contains('hidden');
+
+    // 1. Cerrar todos los contenidos del acordeón dinámicamente
+    const allContents = document.querySelectorAll('[id^="legal-content-"]');
+    const allChevrons = document.querySelectorAll('[id^="legal-chevron-"]');
+    const allBtns = document.querySelectorAll('[id^="legal-btn-"]');
+
+    allContents.forEach(content => content.classList.add('hidden'));
+    allChevrons.forEach(chevron => {
+        chevron.classList.remove('rotate-180', 'text-electric-500');
+        chevron.textContent = '▼';
+    });
+    allBtns.forEach(btn => btn.classList.remove('bg-slate-50', 'dark:bg-white/[0.03]'));
+
+    // 2. Si no estaba abierta, abrir únicamente la seleccionada
+    if (!isAlreadyOpen) {
+        targetContent.classList.remove('hidden');
+        if (targetChevron) {
+            targetChevron.classList.add('rotate-180', 'text-electric-500');
+            targetChevron.textContent = '▲';
+        }
+        if (targetBtn) {
+            targetBtn.classList.add('bg-slate-50', 'dark:bg-white/[0.03]');
+        }
+    }
+};

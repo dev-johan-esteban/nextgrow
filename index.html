@@ -4595,38 +4595,444 @@
 
         </div>
 
+        <!-- ============================================================= -->
+        <!-- VISTA INDEPENDIENTE: DOCUMENTO LEGAL Y TÉRMINOS (SPA)         -->
+        <!-- ============================================================= -->
+        <div id="view-legal"
+            class="hidden min-h-screen pt-32 sm:pt-36 md:pt-40 pb-28 bg-slate-50/50 dark:bg-deep-950/40 relative">
+
+            <!-- Luces ambientales de fondo -->
+            <div
+                class="absolute top-28 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-electric-500/10 dark:bg-electric-500/15 rounded-full blur-[140px] pointer-events-none">
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10 sm:space-y-12">
+
+                <!-- Barra de Retorno y Breadcrumb (Separada del navbar) -->
+                <div class="flex items-center justify-between pb-5 border-b border-slate-200/80 dark:border-white/10">
+                    <button onclick="switchView('inicio')"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 hover:border-electric-500 text-xs font-mono font-bold text-slate-700 dark:text-slate-300 hover:text-electric-600 dark:hover:text-electric-400 transition-all shadow-sm cursor-pointer group">
+                        <span class="group-hover:-translate-x-1 transition-transform">←</span>
+                        <span>Volver al inicio</span>
+                    </button>
+
+                    <span class="text-[11px] font-mono text-slate-400">
+                        NextGrow / Legal
+                    </span>
+                </div>
+
+                <!-- Encabezado de la Vista Legal -->
+                <div class="text-center space-y-3">
+                    <span
+                        class="text-xs font-mono text-electric-600 dark:text-electric-400 uppercase tracking-widest font-bold">
+                        // MARCO CONTRACTUAL & TRANSPARENCIA
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+                        Términos y Condiciones
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-mono">
+                        NextGrow Agency · Medellín, Colombia · Última actualización: Junio 2025
+                    </p>
+                </div>
+
+                <!-- ACORDEÓN COMPLETO (ESPACIADO INTERIOR CORREGIDO) -->
+                <div class="space-y-4" id="legal-accordion-group">
+
+                    <!-- 01: Identificación y Aceptación -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(1)" id="legal-btn-1"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">01</span>
+                                <span
+                                    class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Identificación
+                                    y aceptación de los términos</span>
+                            </div>
+                            <span id="legal-chevron-1"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-1"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Los presentes Términos y Condiciones regulan la relación comercial entre <strong>NextGrow
+                                    Agency</strong> (en adelante "NextGrow", "la Agencia" o "nosotros"), con domicilio
+                                en Medellín, Colombia, y cualquier persona natural o jurídica (en adelante "el Cliente")
+                                que contrate los servicios a través de nextgrowagency.com o canales oficiales.</p>
+                            <p>Al contratar cualquier servicio de NextGrow Agency, el Cliente declara haber leído,
+                                comprendido y aceptado en su totalidad estos términos.</p>
+                            <div
+                                class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-900 dark:text-amber-200 text-xs leading-relaxed">
+                                ⚠️ Si el Cliente no está de acuerdo con alguno de estos términos, deberá abstenerse de
+                                contratar los servicios antes de realizar cualquier pago.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 02: Descripción de Servicios -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(2)" id="legal-btn-2"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">02</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Descripción
+                                    de servicios</span>
+                            </div>
+                            <span id="legal-chevron-2"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-2"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>NextGrow Agency presta servicios de marketing digital, desarrollo tecnológico y
+                                consultoría estratégica:</p>
+                            <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+                                <li><strong>Publicidad Digital:</strong> Gestión de pauta en Meta Ads, Google Ads, SEO y
+                                    estrategia de medios.</li>
+                                <li><strong>Desarrollo Web:</strong> Sitios corporativos, e-commerce, landing pages CRO
+                                    y embudos de venta.</li>
+                                <li><strong>Automatización e IA:</strong> Bots conversacionales, CRM, automatización de
+                                    WhatsApp y flujos de leads.</li>
+                                <li><strong>Software Empresarial:</strong> Portales, dashboards de control e
+                                    integraciones a medida.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 03: Condiciones de Pago -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(3)" id="legal-btn-3"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">03</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Condiciones
+                                    de pago</span>
+                            </div>
+                            <span id="legal-chevron-3"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-3"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <div
+                                class="p-4 rounded-xl bg-growth-500/10 border border-growth-500/25 text-growth-900 dark:text-growth-200 text-xs leading-relaxed">
+                                💳 El pago total del servicio debe efectuarse de forma anticipada y completa antes del
+                                inicio de cualquier actividad técnica.
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+                                <li><strong>Monedas:</strong> Facturación en COP o USD según la propuesta.</li>
+                                <li><strong>Mora:</strong> El retraso en suscripciones recurrentes habilita la pausa
+                                    inmediata de campañas o servicios.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 04: Política de Reembolsos y Garantía -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(4)" id="legal-btn-4"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-growth-600 dark:text-growth-400 w-6">04</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Política de
+                                    reembolsos y garantía de resultado</span>
+                            </div>
+                            <span id="legal-chevron-4"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-4"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <div
+                                class="p-4 rounded-xl bg-growth-500/10 border border-growth-500/25 text-growth-900 dark:text-growth-200 text-xs leading-relaxed">
+                                ✅ <strong>GARANTÍA NEXTGROW:</strong> Si durante la vigencia del servicio contratado no
+                                logramos generar un aumento demostrable en el tráfico e interacciones acordadas,
+                                NextGrow Agency realizará la devolución del 100% del valor pagado por dicho período.
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
+                                <li>Aplica exclusivamente sobre tráfico, visitas e interacciones digitales demostrables.
+                                </li>
+                                <li>No aplica sobre volumen de ventas cerradas, ya que el cierre depende de la gestión
+                                    comercial del Cliente.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 05: Duración y Cancelación -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(5)" id="legal-btn-5"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">05</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Duración y
+                                    cancelación del servicio</span>
+                            </div>
+                            <span id="legal-chevron-5"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-5"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>🚪 <strong>Sin permanencia:</strong> Los servicios mensuales pueden cancelarse en
+                                cualquier momento sin penalidad; la cancelación entra en vigencia al completar el
+                                período ya pagado.</p>
+                        </div>
+                    </div>
+
+                    <!-- 06: Propiedad Intelectual -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(6)" id="legal-btn-6"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">06</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Propiedad
+                                    intelectual</span>
+                            </div>
+                            <span id="legal-chevron-6"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-6"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>✅ Con el pago completado, todos los activos creados (diseños, código fuente,
+                                creatividades publicitarias y textos) pasan a ser propiedad exclusiva del Cliente con
+                                acceso total.</p>
+                        </div>
+                    </div>
+
+                    <!-- 07: Confidencialidad -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(7)" id="legal-btn-7"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">07</span>
+                                <span
+                                    class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Confidencialidad</span>
+                            </div>
+                            <span id="legal-chevron-7"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-7"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Compromiso formal de reserva sobre bases de datos, métricas y datos comerciales durante
+                                el contrato y por dos (2) años adicionales posteriores a su finalización.</p>
+                        </div>
+                    </div>
+
+                    <!-- 08: Limitación de Responsabilidad -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(8)" id="legal-btn-8"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">08</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Limitación
+                                    de responsabilidad</span>
+                            </div>
+                            <span id="legal-chevron-8"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-8"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>NextGrow no asume responsabilidad por lucro cesante ni fluctuaciones macroeconómicas. La
+                                responsabilidad máxima contractual queda limitada al valor pagado por el servicio.</p>
+                        </div>
+                    </div>
+
+                    <!-- 09: Obligaciones del Cliente -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(9)" id="legal-btn-9"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">09</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Obligaciones
+                                    del cliente</span>
+                            </div>
+                            <span id="legal-chevron-9"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-9"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Suministrar accesos a tiempo, aprobar entregables con fluidez y mantener saldos activos
+                                en plataformas publicitarias externas.</p>
+                        </div>
+                    </div>
+
+                    <!-- 10: Modificaciones a los Términos -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(10)" id="legal-btn-10"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">10</span>
+                                <span
+                                    class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Modificaciones
+                                    a los términos</span>
+                            </div>
+                            <span id="legal-chevron-10"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-10"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Cualquier cambio normativo será publicado con 15 días de preaviso en nextgrowagency.com
+                                para los acuerdos activos.</p>
+                        </div>
+                    </div>
+
+                    <!-- 11: Ley Aplicable y Disputas -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(11)" id="legal-btn-11"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">11</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Ley
+                                    aplicable y resolución de disputas</span>
+                            </div>
+                            <span id="legal-chevron-11"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-11"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p>Bajo leyes de la República de Colombia. Conciliación directa inicial y sometimiento a
+                                juzgados de Medellín, Colombia.</p>
+                        </div>
+                    </div>
+
+                    <!-- 12: Contingencia Anti-Baneo -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border-2 border-growth-500/40 dark:border-growth-500/30 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(12)" id="legal-btn-12"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors bg-growth-50/30 dark:bg-growth-500/5">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-growth-600 dark:text-growth-400 w-6">12</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Presupuesto
+                                    bajo sistema de contingencia anti-baneo</span>
+                            </div>
+                            <span id="legal-chevron-12"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-12"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="text-xs text-slate-500 italic">Aplica en caso de acordarse expresamente en la
+                                propuesta comercial.</p>
+                            <p>Administración fiduciaria del presupuesto en medios seguros controlados por la Agencia
+                                para evitar bloqueos y débitos no autorizados de las plataformas.</p>
+                            <div
+                                class="p-4 rounded-xl bg-growth-500/10 border border-growth-500/25 text-xs text-growth-900 dark:text-growth-200 leading-relaxed">
+                                ✅ El saldo no consumido se devuelve en un plazo de hasta 30 días hábiles una vez
+                                liberado por el banco/plataforma.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 13: Contacto -->
+                    <div
+                        class="rounded-2xl bg-white dark:bg-deep-900 border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm transition-all duration-300">
+                        <button onclick="toggleLegalAccordion(13)" id="legal-btn-13"
+                            class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors">
+                            <div class="flex items-center gap-3.5">
+                                <span
+                                    class="text-xs font-mono font-bold text-electric-600 dark:text-electric-400 w-6">13</span>
+                                <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Canales
+                                    oficiales de contacto</span>
+                            </div>
+                            <span id="legal-chevron-13"
+                                class="text-slate-400 transition-transform duration-300 font-mono text-xs">▼</span>
+                        </button>
+                        <div id="legal-content-13"
+                            class="hidden px-6 sm:px-8 pt-4 pb-8 border-t border-slate-100 dark:border-white/5 space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-mono">
+                            <p>✉️ contacto@nextgrowagency.com · 📱 (+57) 313 522 40 26 · 📍 Medellín, Colombia</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botón de retorno al pie -->
+                <div class="text-center pt-10">
+                    <button onclick="switchView('inicio')"
+                        class="px-7 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-deep-950 font-black text-xs hover:bg-electric-600 dark:hover:bg-electric-400 dark:hover:text-white transition-all shadow-md cursor-pointer">
+                        ← Volver a la página principal
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
+
+    <!-- ============================================================= -->
+    <!-- FOOTER PRINCIPAL NEXTGROW                                     -->
+    <!-- ============================================================= -->
     <footer
-        class="bg-white dark:bg-deep-950 border-t border-slate-200 dark:border-white/[0.08] py-12 text-slate-500 dark:text-slate-400 text-xs transition-colors duration-300">
+        class="bg-white dark:bg-deep-950 border-t border-slate-200 dark:border-white/[0.08] py-12 text-slate-500 dark:text-slate-400 text-xs transition-colors duration-300 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
 
+                <!-- Columna 1: Marca y Contacto -->
                 <div class="md:col-span-4 space-y-3">
                     <div class="flex items-center gap-2">
                         <div
-                            class="w-8 h-8 rounded-xl bg-electric-600/20 border border-electric-500/30 flex items-center justify-center text-growth-500 font-bold">
+                            class="w-8 h-8 rounded-xl bg-electric-600/20 border border-electric-500/30 flex items-center justify-center text-growth-500 font-bold text-xs">
                             NG
                         </div>
-                        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">Next<span
-                                class="text-electric-600 dark:text-electric-400">Grow</span></span>
+                        <span class="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+                            Next<span class="text-electric-600 dark:text-electric-400">Grow</span>
+                        </span>
                     </div>
-                    <div class="text-[11px] text-slate-500 space-y-1">
-                        <p>✉ contacto@nextgrowagency.com</p>
+                    <div class="text-[11px] text-slate-500 dark:text-slate-400 space-y-1 font-mono">
+                        <p>
+                            <a href="mailto:contacto@nextgrowagency.com"
+                                class="hover:text-electric-600 dark:hover:text-electric-400 transition-colors">
+                                ✉ contacto@nextgrowagency.com
+                            </a>
+                        </p>
                         <p>📍 Medellín, Colombia</p>
                     </div>
                 </div>
 
-                <div class="md:col-span-4 flex flex-col space-y-1.5 text-[11px]">
-                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition">Términos y condiciones</a>
-                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition">Política de tratamiento de
-                        datos</a>
-                    <a href="#" class="hover:text-slate-900 dark:hover:text-white transition">Aviso de privacidad</a>
+                <!-- Columna 2: Enlaces Legales vinculados al acordeón -->
+                <div class="md:col-span-4 flex flex-col space-y-2 text-[11px]">
+                    <button onclick="goToLegalView(1)"
+                        class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5 group w-fit cursor-pointer text-left">
+                        <span class="text-electric-500 group-hover:translate-x-0.5 transition-transform">➔</span>
+                        <span>Términos y condiciones</span>
+                    </button>
+
+                    <button onclick="goToLegalView(7)"
+                        class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5 group w-fit cursor-pointer text-left">
+                        <span class="text-electric-500 group-hover:translate-x-0.5 transition-transform">➔</span>
+                        <span>Política de tratamiento de datos & confidencialidad</span>
+                    </button>
+
+                    <button onclick="goToLegalView(12)"
+                        class="hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5 group w-fit cursor-pointer text-left">
+                        <span class="text-growth-500 group-hover:translate-x-0.5 transition-transform">➔</span>
+                        <span class="text-growth-600 dark:text-growth-400 font-medium">Sistema de contingencia
+                            publicitaria</span>
+                    </button>
                 </div>
 
-                <div class="md:col-span-4 text-left md:text-right">
+                <!-- Columna 3: Copyright y Créditos -->
+                <div class="md:col-span-4 text-left md:text-right space-y-1">
                     <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-relaxed">
                         © 2026 NextGrow Agency.<br class="hidden sm:inline"> Todos los derechos reservados.
+                    </p>
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 font-mono">
+                        Infraestructura digital & adquisición de clientes
                     </p>
                 </div>
 
