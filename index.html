@@ -4974,11 +4974,12 @@
 
                 </div>
 
-                <!-- Botón de retorno al pie -->
-                <div class="text-center pt-8">
+                <!-- Botón de retorno al pie (Corregido solo con clases) -->
+                <div class="text-center pt-8 pb-4">
                     <button onclick="switchView('inicio')"
-                        class="px-7 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-deep-950 font-black text-xs hover:bg-electric-600 dark:hover:bg-electric-400 dark:hover:text-white transition-all shadow-md cursor-pointer">
-                        ← Volver a la página principal
+                        class="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-electric-600 text-white dark:bg-white/[0.08] dark:hover:bg-electric-600 dark:border dark:border-white/15 font-bold text-xs tracking-wide transition-all shadow-md hover:shadow-lg active:scale-95 cursor-pointer whitespace-nowrap group">
+                        <span class="transition-transform group-hover:-translate-x-1">←</span>
+                        <span>Volver a la página principal</span>
                     </button>
                 </div>
 
